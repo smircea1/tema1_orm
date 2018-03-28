@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="proiect_ejb" transaction-type="RESOURCE_LOCAL">
+		<class>com.example.ejb.model.AutoRestock</class>
+		<class>com.example.ejb.model.Clientb2b</class>
+		<class>com.example.ejb.model.Clientb2c</class>
+		<class>com.example.ejb.model.OrderItem</class>
+		<class>com.example.ejb.model.Ordermf</class>
+		<class>com.example.ejb.model.Promo</class>
+		<class>com.example.ejb.model.StockClientb2b</class>
+		<class>com.example.ejb.model.StockSupplier</class>
+		<class>com.example.ejb.model.Supplier</class>
+		<class>com.example.ejb.model.User</class>
+		<class>com.example.ejb.model.Wine</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ormdb"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="root"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>
