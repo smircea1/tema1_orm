@@ -2,7 +2,7 @@ package com.example.ejb.dto;
 
 import java.io.Serializable;
 
-public class Clientb2cDTO implements Serializable {
+public class Clientb2cDTO extends UserDTO implements Serializable {
 	/**
 	 * 
 	 */
@@ -12,7 +12,7 @@ public class Clientb2cDTO implements Serializable {
  
 	private String cnp;
  
-	private int dateRegister;
+	private java.util.Date dateRegister;
  
 	private String nume;
  
@@ -28,7 +28,7 @@ public class Clientb2cDTO implements Serializable {
 	
 
 	public Clientb2cDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 
@@ -48,11 +48,11 @@ public class Clientb2cDTO implements Serializable {
 		this.cnp = cnp;
 	}
 
-	public int getDateRegister() {
+	public java.util.Date getDateRegister() {
 		return dateRegister;
 	}
 
-	public void setDateRegister(int dateRegister) {
+	public void setDateRegister(java.util.Date dateRegister) {
 		this.dateRegister = dateRegister;
 	}
 

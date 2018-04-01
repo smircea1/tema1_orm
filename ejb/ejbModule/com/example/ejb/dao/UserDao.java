@@ -13,6 +13,7 @@ import com.example.ejb.model.User;
 /**
  * Session Bean implementation class FirstStatelessEjb
  */
+
 @Stateless
 public class UserDao implements UserDAORemote {
  

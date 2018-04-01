@@ -14,6 +14,7 @@ import com.example.ejb.model.Clientb2c;
 /**
  * Session Bean implementation class FirstStatelessEjb
  */
+
 @Stateless
 public class Clientb2cDao implements Clientb2cDAORemote {
 
@@ -26,6 +27,11 @@ public class Clientb2cDao implements Clientb2cDAORemote {
 	@Override
 	public void insert(Clientb2cDTO data) { 
 		Clientb2c client = new Clientb2c();
+		
+		client.setUsername(data.getUsername());
+		client.setPassword(data.getPassword());
+		client.setEmail(data.getEmail());
+		client.setAddress(data.getAddress());
 		
 		client.setCnp(data.getCnp());
 		client.setDateRegister(data.getDateRegister());

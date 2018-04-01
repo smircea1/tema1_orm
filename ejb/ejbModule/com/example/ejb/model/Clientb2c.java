@@ -18,8 +18,9 @@ public class Clientb2c extends User implements Serializable {
 	@Lob
 	private String cnp;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="date_register")
-	private int dateRegister;
+	private java.util.Date dateRegister;
 
 	@Lob
 	private String nume;
@@ -42,11 +43,11 @@ public class Clientb2c extends User implements Serializable {
 		this.cnp = cnp;
 	}
 
-	public int getDateRegister() {
+	public java.util.Date getDateRegister() {
 		return this.dateRegister;
 	}
 
-	public void setDateRegister(int dateRegister) {
+	public void setDateRegister(java.util.Date dateRegister) {
 		this.dateRegister = dateRegister;
 	}
 

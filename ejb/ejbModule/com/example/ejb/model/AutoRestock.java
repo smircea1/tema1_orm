@@ -22,7 +22,7 @@ public class AutoRestock implements Serializable {
 
 	private int limited;
 
-	//bi-directional many-to-one association to StockClientb2b
+//	//bi-directional many-to-one association to StockClientb2b
 	@ManyToOne
 	@JoinColumn(name="id_stock_clientb2b")
 	private StockClientb2b stockClientb2b;

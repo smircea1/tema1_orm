@@ -9,6 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity 
+@Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="DType", discriminatorType=DiscriminatorType.STRING) 
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {

@@ -14,6 +14,7 @@ import com.example.ejb.model.Ordermf;
 /**
  * Session Bean implementation class FirstStatelessEjb
  */
+
 @Stateless
 public class OrderDao implements OrderDAORemote {
 
