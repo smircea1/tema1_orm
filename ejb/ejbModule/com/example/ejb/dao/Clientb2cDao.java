@@ -19,7 +19,10 @@ public class Clientb2cDao implements Clientb2cDAORemote {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	 
+	
+	public EntityManager getEntityManager(){
+		return entityManager;
+	}
 	@Override
 	public void insert(Clientb2cDTO data) { 
 		Clientb2c client = new Clientb2c();

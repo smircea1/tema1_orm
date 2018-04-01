@@ -14,10 +14,7 @@ import java.util.List;
 @NamedQuery(name="Supplier.findAll", query="SELECT s FROM Supplier s")
 public class Supplier extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-//	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	private int id;
+ 
 
 	@Lob
 	@Column(name="nume_firma")
@@ -33,15 +30,7 @@ public class Supplier extends User implements Serializable {
 
 	public Supplier() {
 	}
-
-//	public int getId() {
-//		return this.id;
-//	}
-//
-//	public void setId(int id) {
-//		this.id = id;
-//	}
-
+  
 	public String getNumeFirma() {
 		return this.numeFirma;
 	}

@@ -1,9 +1,8 @@
 package com.example.ejb.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
-public class Clientb2cDTO extends UserDTO implements Serializable {
+public class Clientb2cDTO implements Serializable {
 	/**
 	 * 
 	 */
@@ -13,7 +12,7 @@ public class Clientb2cDTO extends UserDTO implements Serializable {
  
 	private String cnp;
  
-	private Date dateRegister;
+	private int dateRegister;
  
 	private String nume;
  
@@ -49,11 +48,11 @@ public class Clientb2cDTO extends UserDTO implements Serializable {
 		this.cnp = cnp;
 	}
 
-	public Date getDateRegister() {
+	public int getDateRegister() {
 		return dateRegister;
 	}
 
-	public void setDateRegister(Date dateRegister) {
+	public void setDateRegister(int dateRegister) {
 		this.dateRegister = dateRegister;
 	}
 

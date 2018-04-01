@@ -11,7 +11,41 @@ public class UserDTO implements Serializable{
 
 	public UserDTO(){
 		
-	} 
+	}
+	
+	public UserDTO(UserDTO copy){
+		id = copy.id;
+		username = copy.username;
+		password = copy.password;
+		type = copy.type;
+		email = copy.email;
+		address = copy.address;
+	}
+	public UserDTO(String username, String password, String type) {
+		super();
+		this.password = password;
+		this.type = type;
+		this.username = username;
+	}
+
+	public UserDTO(String address, String email, String password, String type, String username) {
+		super();
+		this.address = address;
+		this.email = email;
+		this.password = password;
+		this.type = type;
+		this.username = username;
+	}
+
+	public UserDTO(int id, String address, String email, String password, String type, String username) {
+		super();
+		this.id = id;
+		this.address = address;
+		this.email = email;
+		this.password = password;
+		this.type = type;
+		this.username = username;
+	}
 
 	private int id;
 

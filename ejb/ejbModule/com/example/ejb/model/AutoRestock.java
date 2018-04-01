@@ -20,7 +20,7 @@ public class AutoRestock implements Serializable {
 
 	private int active;
 
-	private int limit;
+	private int limited;
 
 	//bi-directional many-to-one association to StockClientb2b
 	@ManyToOne
@@ -46,12 +46,12 @@ public class AutoRestock implements Serializable {
 		this.active = active;
 	}
 
-	public int getLimit() {
-		return this.limit;
+	public int getLimited() {
+		return this.limited;
 	}
 
-	public void setLimit(int limit) {
-		this.limit = limit;
+	public void setLimit(int limited) {
+		this.limited = limited;
 	}
 
 	public StockClientb2b getStockClientb2b() {

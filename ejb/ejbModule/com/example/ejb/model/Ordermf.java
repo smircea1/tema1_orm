@@ -29,7 +29,7 @@ public class Ordermf implements Serializable {
 
 	//bi-directional many-to-one association to Clientb2c
 	@ManyToOne
-	@JoinColumn(name="id_clientb2c")
+	@JoinColumn(name="id_user")
 	private Clientb2c clientb2c;
 
 	public Ordermf() {

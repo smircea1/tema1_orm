@@ -14,17 +14,12 @@ import java.util.List;
 @NamedQuery(name="Clientb2c.findAll", query="SELECT c FROM Clientb2c c")
 public class Clientb2c extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-//	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	private int id;
-
+  
 	@Lob
 	private String cnp;
-	
-	@Temporal(TemporalType.DATE)
+
 	@Column(name="date_register")
-	private java.util.Date dateRegister; 
+	private int dateRegister;
 
 	@Lob
 	private String nume;
@@ -39,14 +34,6 @@ public class Clientb2c extends User implements Serializable {
 	public Clientb2c() {
 	}
 
-//	public int getId() {
-//		return this.id;
-//	}
-//
-//	public void setId(int id) {
-//		this.id = id;
-//	}
-
 	public String getCnp() {
 		return this.cnp;
 	}
@@ -55,11 +42,11 @@ public class Clientb2c extends User implements Serializable {
 		this.cnp = cnp;
 	}
 
-	public java.util.Date getDateRegister() {
+	public int getDateRegister() {
 		return this.dateRegister;
 	}
 
-	public void setDateRegister(java.util.Date dateRegister) {
+	public void setDateRegister(int dateRegister) {
 		this.dateRegister = dateRegister;
 	}
 

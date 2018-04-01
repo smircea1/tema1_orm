@@ -14,10 +14,7 @@ import java.util.List;
 @NamedQuery(name="Clientb2b.findAll", query="SELECT c FROM Clientb2b c")
 public class Clientb2b extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-//	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	private int id;
+ 
 
 	@Lob
 	private String cui;
@@ -35,16 +32,8 @@ public class Clientb2b extends User implements Serializable {
 	private List<StockClientb2b> stockClientb2bs;
 
 	public Clientb2b() {
-	}
-
-//	public int getId() {
-//		return this.id;
-//	}
-//
-//	public void setId(int id) {
-//		this.id = id;
-//	}
-
+	} 
+	
 	public String getCui() {
 		return this.cui;
 	}

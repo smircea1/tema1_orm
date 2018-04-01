@@ -15,8 +15,8 @@ import com.example.ejb.model.User;
  */
 @Stateless
 public class UserDao implements UserDAORemote {
-
-//	@PersistenceContext
+ 
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Override
