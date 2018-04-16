@@ -15,11 +15,8 @@
 		<br/>Password:    -->
 		
 	<h:form id="loginForm">
-		<h:inputText required="true" value="#{loginBean.loginDTO.username}" label="Username:"> 
-		</h:inputText>
-		<h:inputSecret value="#{loginBean.loginDTO.password}" label="Password: ">
-		
-		</h:inputSecret>  
+		<br/>Username: 	<h:inputText value="#{loginBean.loginDTO.username}" required="true" /> </h:inputText>
+		<br/>Password:	<h:inputSecret value="#{loginBean.loginDTO.password}" /> </h:inputSecret>  
 		<br/><h:commandButton value="Login" action="#{loginBean.actionLogin}"></h:commandButton>
 	</h:form>
 
