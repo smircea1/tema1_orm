@@ -6,23 +6,25 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import com.example.ejb.webDTO.ChangePasswordDTO;
 import com.example.ejb.webDTO.LoginDTO;
 
-@ManagedBean(name = "loginBean")
+@ManagedBean(name = "changePasswordBean")
 @RequestScoped
-public class LoginBean implements Serializable {
+public class ChangePasswordBean implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public LoginDTO loginDTO;
+	public ChangePasswordDTO changeDTO;
 
-	public String actionLogin() {
+	public String actionChange() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		
-		 
+		
+		
 		return "success.";
 	}
 }

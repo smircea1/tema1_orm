@@ -9,18 +9,16 @@
 	<title>Insert title here</title>
 </h:head>
 <h:body>
-	<h2>Login</h2>
+	<h2>Change pass</h2>
 
 		<!-- <br/>Username: 
 		<br/>Password:    -->
 		
-	<h:form id="loginForm">
-		<h:inputText required="true" value="#{loginBean.loginDTO.username}" label="Username:"> 
-		</h:inputText>
-		<h:inputSecret value="#{loginBean.loginDTO.password}" label="Password: ">
-		
-		</h:inputSecret>  
-		<br/><h:commandButton value="Login" action="#{loginBean.actionLogin}"></h:commandButton>
+	<h:form id="changeForm">
+		<h:inputText required="true" value="#{changePasswordBean.changeDTO.oldPassword}" label="Old password:" />  
+		<h:inputSecret value="#{changePasswordBean.changeDTO.newPassword}" label="New password: " /> 
+		<h:inputSecret value="#{changePasswordBean.changeDTO.confirmPassword}" label="Confirm password: " /> 
+		<br/><h:commandButton value="Login" action="#{changePasswordBean.actionChange}"></h:commandButton>
 	</h:form>
 
 </h:body>
