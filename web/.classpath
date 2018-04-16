@@ -13,5 +13,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="D:/Programming_ZONE/tools/glassfish5/glassfish/lib/appserv-rt.jar"/>
+	<classpathentry kind="lib" path="D:/Programming_ZONE/tools/glassfish5/glassfish/lib/gf-client.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ejbClient"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
