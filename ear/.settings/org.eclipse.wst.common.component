@@ -8,5 +8,9 @@
         <dependent-module archiveName="ejbClient.jar" deploy-path="/" handle="module:/resource/ejbClient/ejbClient">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="web.war" deploy-path="/" handle="module:/resource/web/web">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

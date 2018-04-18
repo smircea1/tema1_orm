@@ -9,16 +9,23 @@
 	<title>Insert title here</title>
 </h:head>
 <h:body>
-	<h2>Change pass</h2>
-
-		<!-- <br/>Username: 
-		<br/>Password:    -->
+	<h2>Change pass</h2> 
+	<ui:insert name="greetUser"/>
+	
+	<h:form label="changeForm">
+		<br/>Old Password: <h:inputText required="true" value="#{changePasswordBean.changeDTO.oldPassword}" label="Old password:" />  
 		
-	<h:form id="changeForm">
-		<h:inputText required="true" value="#{changePasswordBean.changeDTO.oldPassword}" label="Old password:" />  
-		<h:inputSecret value="#{changePasswordBean.changeDTO.newPassword}" label="New password: " /> 
-		<h:inputSecret value="#{changePasswordBean.changeDTO.confirmPassword}" label="Confirm password: " /> 
-		<br/><h:commandButton value="Login" action="#{changePasswordBean.actionChange}"></h:commandButton>
+		<br/>New Password: 	<h:inputSecret value="#{changePasswordBean.changeDTO.newPassword}" label="New password: " > 
+		<f:validateRegex pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" />
+		</h:inputSecret> 
+		<br/>Confirm Password:<h:inputSecret value="#{changePasswordBean.changeDTO.confirmPassword}" label="Confirm password: " /> 
+		
+		<br/><h:commandButton value="Change" action="#{changePasswordBean.actionChange}">
+		<br/><h:button value="Logout" outcome="index" />
+		
+		<h:messages infoStyle="color:darkgreen" errorStyle="color:darkred" />
+		
+		</h:commandButton>
 	</h:form>
 
 </h:body>

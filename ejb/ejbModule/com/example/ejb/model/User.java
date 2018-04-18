@@ -28,7 +28,14 @@ public class User implements Serializable {
 	private String type;
 
 	private String username;
+	
+	@Column (name = "DType", insertable = false, updatable = false)
+	private String dtype;
 
+	public String getDtype() {
+		return this.dtype;
+	}
+	
 	public User() {
 	}
 
