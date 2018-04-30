@@ -1,0 +1,15 @@
+body{
+	background-color: gray;
+}
+
+#div_profile{
+	float : right; 
+	border: 1px solid black; 
+}
+#user_type_text{
+	color : red;
+}
+#div_nav{
+	float : left;
+	border: 1px solid black; 
+}

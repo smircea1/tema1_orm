@@ -7,11 +7,18 @@
 	
 
 <h:body>
-	<ui:composition template="./changepass.xhtml">
-		<ui:define name="greetUser">
+	<ui:composition template="../default_page_view.xhtml">
+		<ui:define name="pageTitle">
 			<h1>
-				<h:outputText value ="Hei #{logged_user.type}, #{logged_user.username}"/>
+				<h:outputText value ="Client b2c Profile"/>
 			</h1>
+		</ui:define>
+		<ui:define name="nav"> 
+			<ui:include src="./nav_clientb2c.xhtml" />
+		</ui:define>  
+		<ui:define name="page_content">
+			<br/> Username : #{logged_user.username}
+			<ui:include src="../changepass.xhtml" />
 		</ui:define>
 	</ui:composition>
 </h:body>

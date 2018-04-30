@@ -9,24 +9,20 @@
 	<title>Insert title here</title>
 </h:head>
 <h:body>
-	<h2>Change pass</h2> 
-	<ui:insert name="greetUser"/>
-	
+	<h2>Change pass</h2>   
 	<h:form label="changeForm">
-		<br/>Old Password: <h:inputText required="true" value="#{changePasswordBean.changeDTO.oldPassword}" label="Old password:" />  
+		<br/>Old Password: <h:inputSecret required="true" value="#{changePasswordBean.changeDTO.oldPassword}" label="Old password:" />  
 		
 		<br/>New Password: 	<h:inputSecret value="#{changePasswordBean.changeDTO.newPassword}" label="New password: " > 
 		<f:validateRegex pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" />
 		</h:inputSecret> 
 		<br/>Confirm Password:<h:inputSecret value="#{changePasswordBean.changeDTO.confirmPassword}" label="Confirm password: " /> 
 		
-		<br/><h:commandButton value="Change" action="#{changePasswordBean.actionChange}">
-		<br/><h:button value="Logout" outcome="index" />
+		<br/><h:commandButton value="Change" action="#{changePasswordBean.actionChange}"> 
 		
 		<h:messages infoStyle="color:darkgreen" errorStyle="color:darkred" />
 		
 		</h:commandButton>
-	</h:form>
-
+	</h:form> 
 </h:body>
 </html>

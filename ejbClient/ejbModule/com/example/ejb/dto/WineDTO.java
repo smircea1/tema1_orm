@@ -1,42 +1,26 @@
-package com.example.ejb.model;
+package com.example.ejb.dto;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+import java.util.List; 
 
-
-/**
- * The persistent class for the wine database table.
- * 
- */
-@Entity
-@NamedQuery(name="Wine.findAll", query="SELECT w FROM Wine w")
-public class Wine implements Serializable {
+public class WineDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+ 
 	private int id;
-
-	@Lob
+ 
 	private String description;
-
-	@Lob
+ 
 	private String name;
-
-	@Lob
+ 
 	private String soi;
-
-	@Lob
+ 
 	private String tip;
 
 	private int year;
 
-	//bi-directional many-to-one association to StockSupplier
-	@OneToMany(mappedBy="wine")
-	private List<StockSupplier> stockSuppliers;
+	private List<StockSupplierDTO> stockSuppliers;
 
-	public Wine() {
+	public WineDTO() {
 	}
 
 	public int getId() {
@@ -87,22 +71,22 @@ public class Wine implements Serializable {
 		this.year = year;
 	}
 
-	public List<StockSupplier> getStockSuppliers() {
+	public List<StockSupplierDTO> getStockSuppliers() {
 		return this.stockSuppliers;
 	}
 
-	public void setStockSuppliers(List<StockSupplier> stockSuppliers) {
+	public void setStockSuppliers(List<StockSupplierDTO> stockSuppliers) {
 		this.stockSuppliers = stockSuppliers;
 	}
 
-	public StockSupplier addStockSupplier(StockSupplier stockSupplier) {
+	public StockSupplierDTO addStockSupplier(StockSupplierDTO stockSupplier) {
 		getStockSuppliers().add(stockSupplier);
 		stockSupplier.setWine(this);
 
 		return stockSupplier;
 	}
 
-	public StockSupplier removeStockSupplier(StockSupplier stockSupplier) {
+	public StockSupplierDTO removeStockSupplier(StockSupplierDTO stockSupplier) {
 		getStockSuppliers().remove(stockSupplier);
 		stockSupplier.setWine(null);
 

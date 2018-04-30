@@ -56,11 +56,11 @@ public class LoginBean implements Serializable {
 			session.setAttribute("logged_user", result);
 			switch (result.getType()) {
 			case "Clientb2b": {
-				context.getExternalContext().redirect("clientb2b_change_pass.xhtml");
+				context.getExternalContext().redirect("default_view_client_b2b.xhtml");
 			}
 				break;
 			case "Clientb2c": {
-				context.getExternalContext().redirect("clientb2c_change_pass.xhtml");
+				context.getExternalContext().redirect("client_b2c/home_client_b2c.xhtml");
 			}
 				break;
 			case "Supplier": {

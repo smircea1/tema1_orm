@@ -13,12 +13,14 @@
 	<h2>Login</h2> 
 		<f:view>
 			<h:form label="loginForm">
-				<br/>Username: 	<h:inputText id="usernamefield" value="#{loginBean.loginDTO.username}" required="true" >
-		
-				</h:inputText>
-				<br/>Password:	<h:inputSecret id="passwordfield" value="#{loginBean.loginDTO.password}" >
+				<br/>Username: 	<h:inputText id="usernamefield" value="#{loginBean.loginDTO.username}" required="true" />
+				<br/>Password:	<h:inputSecret id="passwordfield" value="#{loginBean.loginDTO.password}" />
+				<br/>Repeat Password:	<h:inputSecret id="passwordfield" value="#{loginBean.loginDTO.password}" />  
+				<br/>Name:	<h:inputText id="name" value="#{loginBean.loginDTO.password}" />  
 				
-				 </h:inputSecret>  
+				
+				
+				
 				<br/><h:commandButton value="Login" action="#{loginBean.actionLogin}"></h:commandButton>
 				<h:messages infoStyle="color:darkgreen" errorStyle="color:darkred" />
 			</h:form>

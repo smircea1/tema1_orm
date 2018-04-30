@@ -46,7 +46,5 @@ public class OrderDTO implements Serializable{
 
 	public void setClientb2c(Clientb2cDTO clientb2c) {
 		this.clientb2c = clientb2c;
-	}
-	
-	
+	} 
 }
