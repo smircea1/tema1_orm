@@ -20,6 +20,8 @@ public class UserDao implements UserDAORemote {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	
+	
 	@Override
 	public void insert(UserDTO data) {
 		User user = new User();
@@ -49,8 +51,7 @@ public class UserDao implements UserDAORemote {
 
 	@Override
 	public void delete(UserDTO data) {
-		User user = entityManager.find(User.class, data.getId());  
-		
+		User user = entityManager.find(User.class, data.getId());   
 		entityManager.remove(user);   
 	} 
 

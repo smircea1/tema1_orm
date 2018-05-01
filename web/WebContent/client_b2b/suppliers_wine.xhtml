@@ -21,46 +21,45 @@
 		
 		<ui:define name="page_content">
 			<h:dataTable 
-					value="#{dataAccessBean.getB2BSuppliersWines()}" 
-					var="wineDTO"
+					value="#{wineDataViewsBean.getAllSuppliersWines()}" 
+					var="supplied_wine"
 				>
 	
 					<h:column>
 						<f:facet name="header">Id</f:facet>    				
-					    	#{wineDTO.id}
+					    	#{supplied_wine.id}
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">Name</f:facet>    				
-					    	#{wineDTO.name}
+					    	#{supplied_wine.name}
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">Soi</f:facet>
-	      					#{wineDTO.soi}
+	      					#{supplied_wine.soi}
 	   				</h:column>
 	   				
 	   				<h:column>
 						<f:facet name="header">Tip</f:facet>
-	      					#{wineDTO.tip}
+	      					#{supplied_wine.tip}
 	   				</h:column>
 	   				
 	   				<h:column>
 						<f:facet name="header">Year</f:facet>
-	      					#{wineDTO.year}
+	      					#{supplied_wine.year}
 	   				</h:column>
 	
 					<h:column>
 						<f:facet name="header">Description</f:facet>
-	      					#{wineDTO.description}
+	      					#{supplied_wine.description}
 	   				</h:column> 
-				</h:dataTable>
-			</div>
-			<div id="wines_actions">
-				<h:form label="winesActionsForm">
-					<br/><h:commandButton value="Add to my wines" action="" />
-				</h:form>
-			</div>
+	   				<h:column> 
+						<h:form label="winesActionsForm">
+							<h:commandButton value="Add my wines" action="#{navigationController.addSuppliedWineToB2b(supplied_wine)}" />
+						</h:form>
+	   				</h:column> 
+				</h:dataTable> 
 		</ui:define> 
 	</ui:composition>
 </h:body>

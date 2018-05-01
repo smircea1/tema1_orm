@@ -1,6 +1,7 @@
 package com.example.ejb.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List; 
 
 public class SupplierDTO extends UserDTO implements Serializable {
@@ -16,6 +17,7 @@ public class SupplierDTO extends UserDTO implements Serializable {
 	private List<StockSupplierDTO> stockSuppliers;
 
 	public SupplierDTO() {
+		stockSuppliers = new ArrayList<>();
 	}
   
 	public String getNumeFirma() {

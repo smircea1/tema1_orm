@@ -21,6 +21,14 @@ public class OrderDao implements OrderDAORemote {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+//	public static OrderDTO toDTO(Ordermf data) {
+//		OrderDTO
+//	}
+//	
+//	public static Ordermf fromDTO(OrderDTO data) {
+//		
+//	}
+	
 	@Override
 	public void insert(OrderDTO data) { 
 		Clientb2c client = entityManager.find(Clientb2c.class, data.getClientb2c().getId());  

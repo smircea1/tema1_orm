@@ -7,14 +7,16 @@
 	
 
 <h:body>
-	<ui:composition template="../default_page_view.xhtml">
+	<ui:composition template="./default_page_view.xhtml">
 		<ui:define name="pageTitle">
 			<h1>
-				<h:outputText value ="Home for client b2c"/>
+				<h:outputText value ="Wine "/>
 			</h1>
 		</ui:define>
 		<ui:define name="nav"> 
-			<ui:include src="./nav_clientb2c.xhtml" />
+			<h:form>
+				<h:commandLink value="Go back" onclick="window.history.go(-1);"/> 
+			</h:form>
 		</ui:define> 
 		<ui:define name="page_content">
 			Content for homepage is empty.

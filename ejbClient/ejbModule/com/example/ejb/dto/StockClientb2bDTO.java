@@ -1,6 +1,7 @@
 package com.example.ejb.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List; 
 
 public class StockClientb2bDTO implements Serializable {
@@ -21,6 +22,7 @@ public class StockClientb2bDTO implements Serializable {
 	private StockSupplierDTO stockSupplier;
 
 	public StockClientb2bDTO() {
+		orderItems = new ArrayList<>();
 	}
 
 	public int getId() {

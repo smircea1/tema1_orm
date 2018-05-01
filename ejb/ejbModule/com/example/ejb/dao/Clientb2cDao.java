@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import com.example.ejb.daoRemote.Clientb2cDAORemote;
 import com.example.ejb.dto.Clientb2cDTO;
+import com.example.ejb.model.Clientb2b;
 import com.example.ejb.model.Clientb2c; 
 
 /**
@@ -24,9 +25,9 @@ public class Clientb2cDao implements Clientb2cDAORemote {
 	public EntityManager getEntityManager(){
 		return entityManager;
 	}
-	@Override
-	public void insert(Clientb2cDTO data) { 
-		Clientb2c client = new Clientb2c();
+	
+	public static Clientb2cDTO toDTO(Clientb2c data) {
+		Clientb2cDTO client = new Clientb2cDTO();
 		
 		client.setUsername(data.getUsername());
 		client.setPassword(data.getPassword());
@@ -38,7 +39,28 @@ public class Clientb2cDao implements Clientb2cDAORemote {
 		client.setNume(data.getNume());
 		client.setPrenume(data.getPrenume()); 
 		
-		entityManager.persist(client); 
+		return client;
+	}
+	
+	public static Clientb2c fromDTO(Clientb2cDTO data) {
+		Clientb2c  client = new Clientb2c();
+		
+		client.setUsername(data.getUsername());
+		client.setPassword(data.getPassword());
+		client.setEmail(data.getEmail());
+		client.setAddress(data.getAddress());
+		
+		client.setCnp(data.getCnp());
+		client.setDateRegister(data.getDateRegister());
+		client.setNume(data.getNume());
+		client.setPrenume(data.getPrenume()); 
+		
+		return client;
+	}
+	
+	@Override
+	public void insert(Clientb2cDTO data) {   
+		entityManager.persist(fromDTO(data)); 
 	}
 
 	@Override
@@ -56,8 +78,7 @@ public class Clientb2cDao implements Clientb2cDAORemote {
 
 	@Override
 	public void delete(Clientb2cDTO data) {
-		Clientb2c client = entityManager.find(Clientb2c.class, data.getId()); 
-		
+		Clientb2c client = entityManager.find(Clientb2c.class, data.getId());  
 		entityManager.remove(client);   
 	}
 	@Override
@@ -79,6 +100,11 @@ public class Clientb2cDao implements Clientb2cDAORemote {
 		foundDTO.setPrenume(found.getPrenume());
 		
 		return foundDTO; 
+	}
+	@Override
+	public Clientb2cDTO getById(int id) {
+		Clientb2c client = entityManager.find(Clientb2c.class, id);  
+		return client == null? null : toDTO(client); 
 	}
 
 }

@@ -5,8 +5,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.example.ejb.daoRemote.SupplierDAORemote;
+import com.example.ejb.dto.StockSupplierDTO;
 import com.example.ejb.dto.SupplierDTO;
 import com.example.ejb.model.Clientb2b;
+import com.example.ejb.model.StockSupplier;
 import com.example.ejb.model.Supplier;
 
 @Stateless
@@ -31,8 +33,10 @@ public class SupplierDAO implements SupplierDAORemote{
 		supp.setVechime(data.getVechime());
 		supp.setNumeFirma(data.getNumeFirma());
 		supp.setVisibility(data.getVisibility());
-		
-//		supp.setStockSuppliers(data.getStockSuppliers());
+ 
+		for(StockSupplier supplier : data.getStockSuppliers()) {
+			supp.addStockSupplier(StockSupplierDao.toDTO(supplier));
+		}
 		
 		return supp;
 	}
@@ -50,7 +54,9 @@ public class SupplierDAO implements SupplierDAORemote{
 		supp.setNumeFirma(data.getNumeFirma());
 		supp.setVisibility(data.getVisibility());
 		
-//		supp.setStockSuppliers(data.getStockSuppliers());
+		for(StockSupplierDTO supplier : data.getStockSuppliers()) {
+			supp.addStockSupplier(StockSupplierDao.fromDTO(supplier));
+		}
 		
 		return supp;
 	}
@@ -64,14 +70,16 @@ public class SupplierDAO implements SupplierDAORemote{
 	@Override
 	public void update(SupplierDTO data) {
 		Supplier client = entityManager.find(Supplier.class, data.getId());
- 
-		client.setNumeFirma(data.getNumeFirma());
-		client.setVechime(data.getVechime());
-		client.setVisibility(data.getVisibility()); 
+		if(client == null)
+			return;
+		
+//		client.setNumeFirma(data.getNumeFirma());
+//		client.setVechime(data.getVechime());
+//		client.setVisibility(data.getVisibility()); 
 //		client.setStockSuppliers(data.getStockSuppliers());
 		 
 		
-		entityManager.merge(client);
+		entityManager.merge(fromDTO(data));
 		entityManager.flush();  
 		
 	}
@@ -81,5 +89,11 @@ public class SupplierDAO implements SupplierDAORemote{
 		Supplier client = entityManager.find(Supplier.class, data.getId());  
 		entityManager.remove(client); 
 		
+	}
+
+	@Override
+	public SupplierDTO getById(int id) {
+		Supplier supplier = entityManager.find(Supplier.class, id);  
+		return supplier == null? null : toDTO(supplier); 
 	}  
 }

@@ -18,7 +18,11 @@
 				<br/>Repeat Password:	<h:inputSecret id="passwordfield" value="#{loginBean.loginDTO.password}" />  
 				<br/>Name:	<h:inputText id="name" value="#{loginBean.loginDTO.password}" />  
 				
-				
+				<br/>User Type: <h:selectOneMenu value = "#{userData.data}"> 
+				   <f:selectItem itemValue = "ClientB2c" itemLabel = "ClientB2c" /> 
+				   <f:selectItem itemValue = "ClientB2b" itemLabel = "ClientB2b" /> 
+				   <f:selectItem itemValue = "Supplier" itemLabel = "Supplier" /> 
+				</h:selectOneMenu>
 				
 				
 				<br/><h:commandButton value="Login" action="#{loginBean.actionLogin}"></h:commandButton>

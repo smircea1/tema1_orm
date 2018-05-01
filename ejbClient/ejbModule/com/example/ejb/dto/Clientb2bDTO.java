@@ -1,6 +1,7 @@
 package com.example.ejb.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List; 
 
 public class Clientb2bDTO  extends UserDTO implements Serializable {
@@ -17,6 +18,7 @@ public class Clientb2bDTO  extends UserDTO implements Serializable {
 	private List<StockClientb2bDTO> stockClientb2bs;
 
 	public Clientb2bDTO() {
+		stockClientb2bs = new ArrayList<>();
 	} 
 	
 	public String getCui() {

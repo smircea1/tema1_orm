@@ -27,8 +27,15 @@
 				>
 	
 					<h:column>
-						<f:facet name="header">Id</f:facet>    				
-					    	#{wineDTO.id}
+						<f:facet name="header">Id</f:facet>  
+						<h:form>
+							<h:commandLink value="#{wineDTO.id}" action="#{navigationController.viewWine(wineDTO)}" />  	
+						</h:form>			
+					    <!-- #{wineDTO.id} 	
+					    	<h:link outcome="review" value="#{wineDTO.id}" >
+						    	<f:param name="id" value="#{wineDTO.id}" />
+						   	</h:link>  
+						-->
 					</h:column>
 	
 					<h:column>
@@ -55,13 +62,13 @@
 						<f:facet name="header">Description</f:facet>
 	      					#{wineDTO.description}
 	   				</h:column> 
+	   				<h:column>
+						<h:form label="winesActionsForm">
+							<h:commandButton value="Remove"  action="#{wineDataViewsBean.removeB2bWine(wineDTO)}" />
+						</h:form>
+	   				</h:column> 
 				</h:dataTable>
-			</div>
-			<div id="wines_actions">
-				<h:form label="winesActionsForm">
-					<br/><h:commandButton value="Remove" action="" />
-				</h:form>
-			</div>
+			</div> 
 			
 		</ui:define> 
 	</ui:composition>

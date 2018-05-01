@@ -104,6 +104,12 @@ public class Clientb2bDao implements Clientb2bDAORemote {
 		Clientb2b found = (Clientb2b)result.get(0);
 		return toDTO(found); 
 	}
+
+	@Override
+	public Clientb2bDTO getById(int id) {
+		Clientb2b client = entityManager.find(Clientb2b.class, id);  
+		return client == null? null : toDTO(client); 
+	}
  
 
 }
