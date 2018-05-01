@@ -27,6 +27,8 @@ public class Clientb2bDao implements Clientb2bDAORemote {
 
 	public static Clientb2b fromDTO(Clientb2bDTO data) {
 		Clientb2b client = new Clientb2b();  
+
+		client.setId(data.getId());
 		
 		client.setUsername(data.getUsername());
 		client.setPassword(data.getPassword());
@@ -47,6 +49,8 @@ public class Clientb2bDao implements Clientb2bDAORemote {
 	public static Clientb2bDTO toDTO(Clientb2b data) {
 		Clientb2bDTO client = new Clientb2bDTO();  
 		
+		client.setId(data.getId());
+		
 		client.setUsername(data.getUsername());
 		client.setPassword(data.getPassword());
 		client.setEmail(data.getEmail());
@@ -57,8 +61,7 @@ public class Clientb2bDao implements Clientb2bDAORemote {
 		client.setSubscribed(data.getSubscribed());
 		client.setType(data.getType());
 		client.setVisibility(data.getVisibility()); 
-		
-
+		 
 //		List<StockClientb2b> stocks = new ArrayList<>();
 //		client.setStockClientb2bs(data.getStockClientb2bs());
 		return client;

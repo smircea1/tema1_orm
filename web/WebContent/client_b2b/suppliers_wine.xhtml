@@ -31,31 +31,27 @@
 					</h:column>
 	
 					<h:column>
-						<f:facet name="header">Name</f:facet>    				
-					    	#{supplied_wine.name}
+						<f:facet name="header">Wine Name</f:facet>    				
+					    	#{supplied_wine.wine.name}
 					</h:column>
 	
 					<h:column>
-						<f:facet name="header">Soi</f:facet>
-	      					#{supplied_wine.soi}
+						<f:facet name="header">Supplier Name</f:facet>
+	      					#{supplied_wine.supplier.numeFirma}
 	   				</h:column>
 	   				
 	   				<h:column>
-						<f:facet name="header">Tip</f:facet>
-	      					#{supplied_wine.tip}
+						<f:facet name="header">Cantitate</f:facet>
+	      					#{supplied_wine.cantitate}
 	   				</h:column>
 	   				
 	   				<h:column>
-						<f:facet name="header">Year</f:facet>
-	      					#{supplied_wine.year}
-	   				</h:column>
-	
-					<h:column>
-						<f:facet name="header">Description</f:facet>
-	      					#{supplied_wine.description}
+						<f:facet name="header">Pret</f:facet>
+	      					#{supplied_wine.pret}
 	   				</h:column> 
 	   				<h:column> 
 						<h:form label="winesActionsForm">
+							<h:commandButton value="View" action="#{navigationController.viewSuppliedWine(supplied_wine)}" />
 							<h:commandButton value="Add my wines" action="#{navigationController.addSuppliedWineToB2b(supplied_wine)}" />
 						</h:form>
 	   				</h:column> 

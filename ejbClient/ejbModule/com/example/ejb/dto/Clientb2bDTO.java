@@ -10,7 +10,7 @@ public class Clientb2bDTO  extends UserDTO implements Serializable {
 	private String cui;
  
 	private String numeFirma;
-
+	
 	private int subscribed;
 
 	private int visibility;

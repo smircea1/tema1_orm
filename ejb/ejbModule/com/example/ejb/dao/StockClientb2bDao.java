@@ -10,10 +10,14 @@ import javax.persistence.Query;
 
 import com.example.ejb.daoRemote.StockClientb2bDAORemote;
 import com.example.ejb.dto.StockClientb2bDTO;
+import com.example.ejb.dto.StockSupplierDTO;
+import com.example.ejb.dto.SupplierDTO;
 import com.example.ejb.model.Clientb2c;
 import com.example.ejb.model.OrderItem;
 import com.example.ejb.model.Ordermf;
 import com.example.ejb.model.StockClientb2b;
+import com.example.ejb.model.StockSupplier;
+import com.example.ejb.model.Supplier;
 
 @Stateless
 public class StockClientb2bDao implements StockClientb2bDAORemote {
@@ -25,12 +29,36 @@ public class StockClientb2bDao implements StockClientb2bDAORemote {
 	
 	public static StockClientb2bDTO toDTO(StockClientb2b data) {
 		StockClientb2bDTO stock = new StockClientb2bDTO();
+		StockSupplierDTO dto_stock_supplier = new StockSupplierDTO(); // avoid stackoverflow
+		SupplierDTO dto_supplier = new SupplierDTO();  // avoid stackoverflow
+		
+		StockSupplier data_stock = data.getStockSupplier(); 
+		Supplier data_supplier = data_stock.getSupplier();
+		
+		dto_supplier.setUsername(data_supplier.getUsername());
+		dto_supplier.setPassword(data_supplier.getPassword());
+		dto_supplier.setAddress(data_supplier.getAddress());
+		dto_supplier.setEmail(data_supplier.getEmail());
+		dto_supplier.setId(data_supplier.getId());
+		dto_supplier.setType(data_supplier.getType());
+		dto_supplier.setVechime(data_supplier.getVechime());
+		dto_supplier.setNumeFirma(data_supplier.getNumeFirma());
+		dto_supplier.setVisibility(data_supplier.getVisibility());
+		
+
+		dto_stock_supplier.setSupplier(dto_supplier);
+		dto_stock_supplier.setCantitate(data_stock.getCantitate());
+		dto_stock_supplier.setId(data_stock.getId());
+		dto_stock_supplier.setPret(data_stock.getPret());
+		dto_stock_supplier.setWine(WineDao.toDTO(data_stock.getWine()));
+		
 		
 		stock.setCantitate(data.getCantitate());
 		stock.setId(data.getId());
 		stock.setPret(data.getPret());
 		stock.setClientb2b(Clientb2bDao.toDTO(data.getClientb2b()));
-		stock.setStockSupplier(StockSupplierDao.toDTO(data.getStockSupplier()));
+		stock.setStockSupplier(dto_stock_supplier);
+//		stock.setStockSupplier(StockSupplierDao.toDTO(data.getStockSupplier()));
 		
 //		for(OrderItem ord : data.getOrderItems()) {
 //			
@@ -41,12 +69,36 @@ public class StockClientb2bDao implements StockClientb2bDAORemote {
 	
 	public static StockClientb2b fromDTO(StockClientb2bDTO data) {
 		StockClientb2b stock = new StockClientb2b();
+		StockSupplier dto_stock_supplier = new StockSupplier(); // avoid stackoverflow
+		Supplier dto_supplier = new Supplier();  // avoid stackoverflow
+		
+		StockSupplierDTO data_stock = data.getStockSupplier(); 
+		SupplierDTO data_supplier = data_stock.getSupplier();
+		
+		dto_supplier.setUsername(data_supplier.getUsername());
+		dto_supplier.setPassword(data_supplier.getPassword());
+		dto_supplier.setAddress(data_supplier.getAddress());
+		dto_supplier.setEmail(data_supplier.getEmail());
+		dto_supplier.setId(data_supplier.getId());
+		dto_supplier.setType(data_supplier.getType());
+		dto_supplier.setVechime(data_supplier.getVechime());
+		dto_supplier.setNumeFirma(data_supplier.getNumeFirma());
+		dto_supplier.setVisibility(data_supplier.getVisibility());
+		
+
+		dto_stock_supplier.setSupplier(dto_supplier);
+		dto_stock_supplier.setCantitate(data_stock.getCantitate());
+		dto_stock_supplier.setId(data_stock.getId());
+		dto_stock_supplier.setPret(data_stock.getPret());
+		dto_stock_supplier.setWine(WineDao.fromDTO(data_stock.getWine()));
+		
 		
 		stock.setCantitate(data.getCantitate());
 		stock.setId(data.getId());
 		stock.setPret(data.getPret());
 		stock.setClientb2b(Clientb2bDao.fromDTO(data.getClientb2b()));
-		stock.setStockSupplier(StockSupplierDao.fromDTO(data.getStockSupplier()));
+		stock.setStockSupplier(dto_stock_supplier);
+//		stock.setStockSupplier(StockSupplierDao.toDTO(data.getStockSupplier()));
 		
 //		for(OrderItem ord : data.getOrderItems()) {
 //			
@@ -102,5 +154,11 @@ public class StockClientb2bDao implements StockClientb2bDAORemote {
 			result.add(toDTO((StockClientb2b) obj));
 		
 		return result;
+	}
+
+	@Override
+	public List<StockClientb2bDTO> getAllAvailableWines() {
+		Query query = entityManager.createQuery("SELECT c FROM StockClientb2b c ");
+		return toDTOList(query.getResultList()); 
 	}
 }

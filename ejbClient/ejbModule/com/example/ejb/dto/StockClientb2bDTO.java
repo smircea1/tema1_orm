@@ -18,7 +18,7 @@ public class StockClientb2bDTO implements Serializable {
 	private List<OrderItemDTO> orderItems;
  
 	private Clientb2bDTO clientb2b;
- 
+
 	private StockSupplierDTO stockSupplier;
 
 	public StockClientb2bDTO() {

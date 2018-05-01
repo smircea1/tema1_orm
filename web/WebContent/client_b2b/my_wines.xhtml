@@ -22,49 +22,36 @@
 		<ui:define name="page_content">
 			<div id="wines_table">
 				<h:dataTable 
-					value="#{dataAccessBean.getB2BWines()}" 
-					var="wineDTO"
+					value="#{wineDataViewsBean.getB2BWines()}" 
+					var="stock_wine"
 				>
 	
 					<h:column>
 						<f:facet name="header">Id</f:facet>  
-						<h:form>
-							<h:commandLink value="#{wineDTO.id}" action="#{navigationController.viewWine(wineDTO)}" />  	
-						</h:form>			
-					    <!-- #{wineDTO.id} 	
-					    	<h:link outcome="review" value="#{wineDTO.id}" >
-						    	<f:param name="id" value="#{wineDTO.id}" />
-						   	</h:link>  
-						-->
+						#{stock_wine.id} 	 
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">Name</f:facet>    				
-					    	#{wineDTO.name}
+					    	#{stock_wine.stockSupplier.wine.name}
 					</h:column>
-	
-					<h:column>
-						<f:facet name="header">Soi</f:facet>
-	      					#{wineDTO.soi}
+	 
+	 				<h:column>
+						<f:facet name="header">Cantitate</f:facet>
+	      					#{stock_wine.cantitate}
 	   				</h:column>
 	   				
 	   				<h:column>
-						<f:facet name="header">Tip</f:facet>
-	      					#{wineDTO.tip}
-	   				</h:column>
-	   				
-	   				<h:column>
-						<f:facet name="header">Year</f:facet>
-	      					#{wineDTO.year}
-	   				</h:column>
-	
-					<h:column>
-						<f:facet name="header">Description</f:facet>
-	      					#{wineDTO.description}
+						<f:facet name="header">Pret</f:facet>
+	      					#{stock_wine.pret}
 	   				</h:column> 
+	 
 	   				<h:column>
 						<h:form label="winesActionsForm">
-							<h:commandButton value="Remove"  action="#{wineDataViewsBean.removeB2bWine(wineDTO)}" />
+							<h:commandButton value="View" action="#{navigationController.viewSuppliedWine(stock_wine.stockSupplier)}" />
+							<h:commandButton value="Edit" action="#{navigationController.editClientb2bStock(stock_wine)}" />
+							<h:commandButton value="Orders"  />
+							<h:commandButton value="Remove"  action="#{wineDataViewsBean.removeB2bWine(stock_wine)}" />
 						</h:form>
 	   				</h:column> 
 				</h:dataTable>

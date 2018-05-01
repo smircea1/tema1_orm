@@ -63,7 +63,7 @@ public class StockSupplierDao implements StockSupplierDAORemote {
 		
 		suppl.setCantitate(data.getCantitate());
 		suppl.setPret(data.getPret());
-		suppl.setSupplier(SupplierDAO.fromDTO(data.getSupplier()));
+		suppl.setSupplier(SupplierDao.fromDTO(data.getSupplier()));
 		suppl.setWine(WineDao.fromDTO(data.getWine()));
 		suppl.setId(data.getId());
 		

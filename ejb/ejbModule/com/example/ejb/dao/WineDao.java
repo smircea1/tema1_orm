@@ -40,9 +40,9 @@ public class WineDao implements WineDAORemote{
 		wine.setYear(data.getYear());
 
 
-		for(StockSupplier suppl : data.getStockSuppliers()) {
-			wine.addStockSupplier(StockSupplierDao.toDTO(suppl));
-		}
+//		for(StockSupplier suppl : data.getStockSuppliers()) {
+//			wine.addStockSupplier(StockSupplierDao.toDTO(suppl));
+//		}
 		
 		return wine;
 	}
@@ -56,9 +56,10 @@ public class WineDao implements WineDAORemote{
 		wine.setSoi(data.getSoi());
 		wine.setYear(data.getYear());
 		
-		for(StockSupplierDTO suppl : data.getStockSuppliers()) {
-			wine.addStockSupplier(StockSupplierDao.fromDTO(suppl));
-		}
+//		for(StockSupplierDTO suppl : data.getStockSuppliers()) {
+//			wine.addStockSupplier(StockSupplierDao.fromDTO(suppl));
+//		}
+		
 		
 //		wine.setStockSuppliers(data.getStockSuppliers());
 		

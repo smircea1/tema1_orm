@@ -55,22 +55,6 @@ public class WineDataViewsBean implements Serializable {
 
 	}
 	
-	private List<WineDTO> getDummyWinesList(){
-		List<WineDTO> list = new ArrayList<>();
-		
-		for(int i=0; i<10; i++) {
-			WineDTO wine = new WineDTO();
-			wine.setId(i);
-			wine.setName("custom b2c");
-			wine.setYear(2018);
-			wine.setSoi("Muscat");
-			wine.setTip("inspirat");
-			list.add(wine);
-		}
-		
-		return list; 
-	}
-	
 	private SupplierDTO getSupplierLogged() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
@@ -108,14 +92,20 @@ public class WineDataViewsBean implements Serializable {
 		return dao_supplier_wines.getAllSuppliedWines();
 	}
 	
-	public void addSupliedWineToB2b(StockClientb2bDTO stock_wine) {
+	public void addClientStock(StockClientb2bDTO stock_wine) {
 		Clientb2bDTO client = getClientb2bLogged(); 
 		if(client == null)
 			return;
 			
 		if(client.getId() == stock_wine.getClientb2b().getId())
-			dao_clientb2b_wines.insert(stock_wine);
-			
+			dao_clientb2b_wines.insert(stock_wine); 
+	}
+	public void updateClientStock(StockClientb2bDTO stock_wine) {
+		Clientb2bDTO client = getClientb2bLogged(); 
+		if(client == null || client.getId() != stock_wine.getClientb2b().getId())
+			return;
+		
+		dao_clientb2b_wines.update(stock_wine);
 	}
 	
 	public List<StockClientb2bDTO> getB2BWines(){ 
@@ -138,24 +128,10 @@ public class WineDataViewsBean implements Serializable {
 		} catch (IOException e) { 
 			e.printStackTrace();
 		} 
-	}
-	
-	
+	} 
 
 	// b2c
-	public List<WineDTO> getAvailableB2CWines(){
-		List<WineDTO> list = new ArrayList<>();
-		
-		for(int i=0; i<10; i++) {
-			WineDTO wine = new WineDTO();
-			wine.setId(i);
-			wine.setName("custom b2c");
-			wine.setYear(2018);
-			wine.setSoi("Muscat");
-			wine.setTip("inspirat");
-			list.add(wine);
-		}
-		
-		return list; 
+	public List<StockClientb2bDTO> getAvailableB2CWines(){
+		return dao_clientb2b_wines.getAllAvailableWines();
 	}  
 }

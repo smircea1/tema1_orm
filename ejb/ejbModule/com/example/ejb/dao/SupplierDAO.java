@@ -12,7 +12,7 @@ import com.example.ejb.model.StockSupplier;
 import com.example.ejb.model.Supplier;
 
 @Stateless
-public class SupplierDAO implements SupplierDAORemote{
+public class SupplierDao implements SupplierDAORemote{
 
 	@PersistenceContext
 	private EntityManager entityManager;

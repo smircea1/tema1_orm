@@ -48,13 +48,25 @@
 	   					<f:facet name="header">Actions</f:facet>
 	   					<div id="wines_actions">
 							<h:form label="winesActionsForm">
-								<br/><h:commandButton value="View" action="#{navigationController.viewSuppliedWine(supplied_wine)}" />
+								<h:commandButton value="View" action="#{navigationController.viewSuppliedWine(supplied_wine)}" />
 								<h:commandButton value="Edit" action="#{navigationController.editSuppliedWine(supplied_wine)}" />
 								<br/><h:commandButton value="Remove" action="#{wineDataViewsBean.removeSuppliedWine(supplied_wine)}" />
 							</h:form>
 						</div>
 	   				</h:column>
 				</h:dataTable>
+				
+				<h:form label="winesActionsForm">
+					<br/>Nume: 	<h:inputText id="numeField"  required="true" > </h:inputText> <!-- value="#{loginBean.loginDTO.username}" -->
+					<br/>Soi: 	<h:inputText id="soiField"  required="true" >  </h:inputText>
+					<br/>An: 	<h:inputText id="yearField"  required="true" >  </h:inputText>
+					<br/>Type: 	<h:inputText id="typeField"  required="true" >  </h:inputText>
+					<br/>Cantitate: <h:inputText id="cantitateField"  required="true" > </h:inputText>
+					<br/>Pret: <h:inputText id="pretField"  required="true" >  </h:inputText>
+					
+					<br/><h:commandButton value="Add" /> <!-- action="addToSupplier()" adica add to logged user if is supplier  -->
+				</h:form>
+				
 			</div> 
 			
 		</ui:define> 

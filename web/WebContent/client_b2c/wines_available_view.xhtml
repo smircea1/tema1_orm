@@ -18,39 +18,30 @@
 		</ui:define>
 		<ui:define name="page_content"> 
 			<h:dataTable 
-				value="#{dataAccessBean.getAvailableB2CWines()}" 
-				var="wineDTO"
+				value="#{wineDataViewsBean.getAvailableB2CWines()}" 
+				var="stock_wine"
 			>
 
 				<h:column>
 					<f:facet name="header">Id</f:facet>    				
-				    	#{wineDTO.id}
+				    	#{stock_wine.id}
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Name</f:facet>    				
-				    	#{wineDTO.name}
+					<f:facet name="header">Wine Name</f:facet>    				
+				    	#{stock_wine.stockSupplier.wine.name}
 				</h:column>
-
+				
 				<h:column>
-					<f:facet name="header">Soi</f:facet>
-      					#{wineDTO.soi}
-   				</h:column>
-   				
-   				<h:column>
-					<f:facet name="header">Tip</f:facet>
-      					#{wineDTO.tip}
-   				</h:column>
-   				
-   				<h:column>
-					<f:facet name="header">Year</f:facet>
-      					#{wineDTO.year}
-   				</h:column>
-
+					<f:facet name="header">Seller Name</f:facet>    				
+				    	#{stock_wine.clientb2b.numeFirma}
+				</h:column>
+				
 				<h:column>
-					<f:facet name="header">Description</f:facet>
-      					#{wineDTO.description}
-   				</h:column> 
+					<f:facet name="header">Pret</f:facet>
+	      				#{stock_wine.pret}
+	   			</h:column> 
+ 
 			</h:dataTable>
 		</ui:define>
 	</ui:composition>
