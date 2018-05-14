@@ -106,7 +106,6 @@ public class Clientb2cDao implements Clientb2cDAORemote {
 		foundDTO.setUsername(found.getUsername());
 		foundDTO.setPassword(found.getPassword());
 		
-		
 		return foundDTO; 
 	}
 	@Override

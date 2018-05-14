@@ -64,7 +64,7 @@ public class UpdateB2CUserBean implements Serializable {
 		if(temporaryUser == null)
 			return "Failure";
 		
-		final FacesContext context = FacesContext.getCurrentInstance();
+//		final FacesContext context = FacesContext.getCurrentInstance();
 		client_dao.update(temporaryUser);
 //		try {
 //			switch (temporaryUser.getType()) {
