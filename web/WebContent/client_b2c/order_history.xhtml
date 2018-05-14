@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+<h:body>
+	<ui:composition template="../default_page_view.xhtml">
+		<ui:define name="pageTitle">
+			<h1>
+				<h:outputText value="Order history" />
+			</h1>
+		</ui:define>
+		<ui:define name="nav">
+			<ui:include src="./nav_clientb2c.xhtml" />
+		</ui:define>
+		<ui:define name="page_content">
+			<h:dataTable value="#{wineDataViewsBean.getHistory(logged_user.id)}"
+				var="ordered_item">
+
+				<h:column>
+					<f:facet name="header">Nume vin</f:facet>    				
+					    	#{ordered_item.stockClientb2b.stockSupplier.wine.name}
+					</h:column>
+
+				<h:column>
+					<f:facet name="header">Cantitate</f:facet>    				
+				    	#{ordered_item.cantitate}
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Pret total</f:facet>    				
+				    	#{ordered_item.pret}
+				</h:column>
+
+			</h:dataTable>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

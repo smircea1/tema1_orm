@@ -41,6 +41,12 @@
 					<f:facet name="header">Pret</f:facet>
 	      				#{stock_wine.pret}
 	   			</h:column> 
+	   			
+	   			<h:column>
+						<h:form label="winesActionsForm">
+							<h:commandButton value="BUY" action="#{navigationController.(stock_wine)}" /> 
+						</h:form>
+	   				</h:column> 
  
 			</h:dataTable>
 		</ui:define>

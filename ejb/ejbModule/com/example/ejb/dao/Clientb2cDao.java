@@ -29,6 +29,8 @@ public class Clientb2cDao implements Clientb2cDAORemote {
 	public static Clientb2cDTO toDTO(Clientb2c data) {
 		Clientb2cDTO client = new Clientb2cDTO();
 		
+		client.setId(data.getId());
+		
 		client.setUsername(data.getUsername());
 		client.setPassword(data.getPassword());
 		client.setEmail(data.getEmail());
@@ -98,6 +100,12 @@ public class Clientb2cDao implements Clientb2cDAORemote {
 		foundDTO.setId(found.getId());
 		foundDTO.setNume(found.getNume());
 		foundDTO.setPrenume(found.getPrenume());
+		foundDTO.setType(found.getType());
+		foundDTO.setAddress(found.getAddress());
+		foundDTO.setEmail(found.getEmail());
+		foundDTO.setUsername(found.getUsername());
+		foundDTO.setPassword(found.getPassword());
+		
 		
 		return foundDTO; 
 	}

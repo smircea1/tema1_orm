@@ -2,6 +2,7 @@ package com.example.web.beans;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -11,7 +12,11 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import com.example.ejb.daoRemote.Clientb2bDAORemote;
+import com.example.ejb.daoRemote.Clientb2cDAORemote;
 import com.example.ejb.dto.Clientb2bDTO;
+import com.example.ejb.dto.Clientb2cDTO;
+import com.example.ejb.dto.OrderDTO;
+import com.example.ejb.dto.OrderItemDTO;
 import com.example.ejb.dto.StockClientb2bDTO;
 import com.example.ejb.dto.StockSupplierDTO;
 import com.example.ejb.dto.UserDTO;
@@ -29,6 +34,9 @@ public class NavigationController implements Serializable {
 
 	@EJB
 	Clientb2bDAORemote dao_clientb2b;
+	 
+	@EJB
+	Clientb2cDAORemote dao_clientb2c;
 	
 	@PostConstruct
 	public void init() {
@@ -40,6 +48,13 @@ public class NavigationController implements Serializable {
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		UserDTO logged = (UserDTO)session.getAttribute("logged_user"); 
 		return logged == null? null : dao_clientb2b.getById(logged.getId());  
+	}
+	
+	private Clientb2cDTO getClientb2cLogged() {
+		final FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		UserDTO logged = (UserDTO)session.getAttribute("logged_user"); 
+		return logged == null? null : dao_clientb2c.getById(logged.getId());  
 	}
 	
 	public String viewWine(WineDTO wine) {
@@ -59,6 +74,41 @@ public class NavigationController implements Serializable {
 	
 	public String viewSuppliedWine(StockSupplierDTO wine) {
 		return viewWine(wine.getWine());
+	}
+	
+	public String goToBuyWineB2c(StockClientb2bDTO ordered) {
+		Clientb2cDTO logged = getClientb2cLogged();
+		if(logged == null ){
+			return "failure";
+		} 
+
+		OrderItemDTO order_item = new OrderItemDTO(); 
+		order_item.setStockClientb2b(ordered);
+		
+		final FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		session.setAttribute("pending_order", order_item);
+		
+		try {
+			context.getExternalContext().redirect("./order_wine.xhtml");
+		} catch (IOException e) { 
+			e.printStackTrace();
+			return "failure";
+		}
+		
+		return "success";
+	}
+	
+	public String goToOrderHistory() {
+		final FacesContext context = FacesContext.getCurrentInstance();
+		
+		try {
+			context.getExternalContext().redirect("./order_history.xhtml");
+		} catch (IOException e) { 
+			e.printStackTrace();
+			return "failure";
+		}
+		return "success";
 	}
 	
 	public String addSuppliedWineToB2b(StockSupplierDTO supplied) {

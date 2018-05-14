@@ -24,7 +24,7 @@ public class Ordermf implements Serializable {
 	private String orderNo;
 
 	//bi-directional many-to-one association to OrderItem
-	@OneToMany(mappedBy="ordermf")
+	@OneToMany(mappedBy="ordermf" )
 	private List<OrderItem> orderItems;
 
 	//bi-directional many-to-one association to Clientb2c
