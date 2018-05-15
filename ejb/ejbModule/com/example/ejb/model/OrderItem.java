@@ -23,7 +23,7 @@ public class OrderItem implements Serializable {
 	private double pret;
 
 	//bi-directional many-to-one association to StockClientb2b
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne 
 	@JoinColumn(name="id_stockb2b")
 	private StockClientb2b stockClientb2b;
 

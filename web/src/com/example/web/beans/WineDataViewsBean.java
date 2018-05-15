@@ -3,7 +3,8 @@ package com.example.web.beans;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List; 
+import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -178,13 +179,17 @@ public class WineDataViewsBean implements Serializable {
 		OrderDTO order = new OrderDTO();
 		order.setDate(timestamp);  
 		order.setClientb2c(b2c_logged);
+		order.setOrderNo(UUID.randomUUID().toString());
 		
 		order.addItemOrderItem(orderItem); 
 		 
 		dao_order.insert(order);
-//		for(OrderItemDTO order_itemDTO : order.getItems())
+//		order = dao_order.getByOrderNumber(order.getOrderNo());
+//		for(OrderItemDTO order_itemDTO : order.getItems()) {
+//			order_itemDTO.setOrdermf(order);
 //			dao_orderItem.insert(order_itemDTO);
-		 
+//		}
+		
 		StockClientb2bDTO stock = orderItem.getStockClientb2b(); 
 		stock.setCantitate(stock.getCantitate() - orderItem.getCantitate());
 		dao_clientb2b_wines.update(stock);
