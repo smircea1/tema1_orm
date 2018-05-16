@@ -49,6 +49,9 @@ public class WineDataViewsBean implements Serializable {
 
 	@EJB
 	OrderDAORemote dao_order;
+
+	@EJB
+	OrderItemDAORemote dao_orderItem;
 	
 	@EJB
 	SupplierDAORemote dao_supplier;
@@ -59,8 +62,6 @@ public class WineDataViewsBean implements Serializable {
 	@EJB
 	Clientb2cDAORemote dao_clientb2c;
 	
-	@EJB
-	OrderItemDAORemote dao_orderItem;
 	
 	/**
 	 * 
@@ -194,6 +195,35 @@ public class WineDataViewsBean implements Serializable {
 		stock.setCantitate(stock.getCantitate() - orderItem.getCantitate());
 		dao_clientb2b_wines.update(stock);
 		
+		return "success";
+	}
+	
+	public String placeOrder(List<OrderItemDTO> orderItems) {
+		final FacesContext context = FacesContext.getCurrentInstance();
+		
+		Clientb2cDTO b2c_logged =  getClientb2cLogged();
+		if(b2c_logged == null) {
+			context.addMessage("loginForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "not logged..", null ));
+			return "failed";
+		}
+		
+		OrderDTO order = new OrderDTO();
+		
+		int timestamp = 12324113; // hardcoded as f
+		order.setDate(timestamp);  
+		order.setClientb2c(b2c_logged);
+		order.setOrderNo(UUID.randomUUID().toString());
+		
+		for(OrderItemDTO oid : orderItems) 
+			order.addItemOrderItem(oid);
+		 
+		dao_order.insert(order);
+		for(OrderItemDTO oid : orderItems) {
+			StockClientb2bDTO stock = oid.getStockClientb2b(); 
+			stock.setCantitate(stock.getCantitate() - oid.getCantitate());
+			dao_clientb2b_wines.update(stock);
+		}
+		 
 		return "success";
 	}
 	

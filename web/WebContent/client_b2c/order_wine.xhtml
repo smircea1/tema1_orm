@@ -20,9 +20,8 @@
 		</ui:define> 
 		<ui:define name="page_content">
 			<h:form label="loginForm">  
-				<br/>Cantitate: <h:inputText id="cantitateField" value="#{pending_order.cantitate}" required="true" /> 
-				
-				<br/><h:commandButton value="Buy" action="#{wineDataViewsBean.addOrder(pending_order)}" />
+				<br/>Cantitate: <h:inputText binding="#{inputCantitate}" />
+				<br/><h:commandButton value="Buy" action="#{b2ccartbean.createOrderItem(inputCantitate.value, pending_order_stock)}" /> 
 			</h:form>
 		</ui:define>
 	</ui:composition>

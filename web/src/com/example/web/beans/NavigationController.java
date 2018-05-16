@@ -80,23 +80,20 @@ public class NavigationController implements Serializable {
 		Clientb2cDTO logged = getClientb2cLogged();
 		if(logged == null ){
 			return "failure";
-		} 
-
-		OrderItemDTO order_item = new OrderItemDTO(); 
-		order_item.setStockClientb2b(ordered);
+		}  
 		
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		session.setAttribute("pending_order", order_item);
+		session.setAttribute("pending_order_stock", ordered);
 		
-		try {
-			context.getExternalContext().redirect("./order_wine.xhtml");
-		} catch (IOException e) { 
-			e.printStackTrace();
-			return "failure";
-		}
+//		try {
+//			context.getExternalContext().redirect("./order_wine.xhtml");
+//		} catch (IOException e) { 
+//			e.printStackTrace();
+//			return "failure";
+//		}
 		
-		return "success";
+		return "order_wine.xhtml";
 	}
 	
 	public String goToOrderHistory() {

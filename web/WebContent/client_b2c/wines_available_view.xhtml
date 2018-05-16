@@ -16,11 +16,9 @@
 		<ui:define name="nav">
 			<ui:include src="./nav_clientb2c.xhtml" />
 		</ui:define>
-		<ui:define name="page_content"> 
-			<h:dataTable 
-				value="#{wineDataViewsBean.getAvailableB2CWines()}" 
-				var="stock_wine"
-			>
+		<ui:define name="page_content">
+			<h:dataTable value="#{wineDataViewsBean.getAvailableB2CWines()}"
+				var="stock_wine">
 
 				<h:column>
 					<f:facet name="header">Id</f:facet>    				
@@ -31,24 +29,27 @@
 					<f:facet name="header">Wine Name</f:facet>    				
 				    	#{stock_wine.stockSupplier.wine.name}
 				</h:column>
-				
+
 				<h:column>
 					<f:facet name="header">Seller Name</f:facet>    				
 				    	#{stock_wine.clientb2b.numeFirma}
 				</h:column>
-				
+
 				<h:column>
 					<f:facet name="header">Pret</f:facet>
 	      				#{stock_wine.pret}
-	   			</h:column> 
-	   			
-	   			<h:column>
+	   			</h:column>
+
+				<h:column>
 						<h:form label="winesActionsForm">
 							<h:commandButton value="BUY" action="#{navigationController.goToBuyWineB2c(stock_wine)}" /> 
-						</h:form>
-	   				</h:column> 
- 
+						</h:form> 
+				</h:column> 
 			</h:dataTable>
+			<h:form label="winesActionsForm">
+				<h:commandButton value="Checkout"
+					action="#{b2ccartbean.placeOrder()}" />
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>
