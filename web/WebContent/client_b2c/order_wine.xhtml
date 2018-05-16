@@ -21,7 +21,7 @@
 		<ui:define name="page_content">
 			<h:form label="loginForm">  
 				<br/>Cantitate: <h:inputText binding="#{inputCantitate}" />
-				<br/><h:commandButton value="Buy" action="#{b2ccartbean.createOrderItem(inputCantitate.value, pending_order_stock)}" /> 
+				<br/><h:commandButton value="Buy" action="#{b2ccartbean.createOrderItem(inputCantitate.value, pendingOrderStock)}" /> 
 			</h:form>
 		</ui:define>
 	</ui:composition>

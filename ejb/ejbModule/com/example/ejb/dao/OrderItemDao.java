@@ -42,25 +42,25 @@ public class OrderItemDao implements OrderItemDAORemote {
 	
 	@Override
 	public void insert(OrderItemDTO data) {
-		OrderItem order_item = new OrderItem(); 
+		OrderItem orderItem = new OrderItem(); 
 		
 		Ordermf order = new Ordermf(); 
 		order.setClientb2c(Clientb2cDao.fromDTO(data.getOrdermf().getClientb2c()));
 		order.setDate(data.getOrdermf().getDate());
 		order.setOrderNo(data.getOrdermf().getOrderNo()); 
 		
-		order_item.setCantitate(data.getCantitate());
-		order_item.setId(data.getId());
-		order_item.setOrdermf(order);
-		order_item.setPret(data.getPret());
-		order_item.setStockClientb2b(StockClientb2bDao.fromDTO(data.getStockClientb2b()));
-		entityManager.persist(order_item); 
+		orderItem.setCantitate(data.getCantitate());
+		orderItem.setId(data.getId());
+		orderItem.setOrdermf(order);
+		orderItem.setPret(data.getPret());
+		orderItem.setStockClientb2b(StockClientb2bDao.fromDTO(data.getStockClientb2b()));
+		entityManager.persist(orderItem); 
 	}
 
 	@Override
 	public void update(OrderItemDTO data) { 
-		OrderItem order_item = entityManager.find(OrderItem.class, data.getId());
-		if(order_item == null)
+		OrderItem orderItem = entityManager.find(OrderItem.class, data.getId());
+		if(orderItem == null)
 			return; 
 		
 		Ordermf order = new Ordermf(); 
@@ -68,14 +68,14 @@ public class OrderItemDao implements OrderItemDAORemote {
 		order.setDate(data.getOrdermf().getDate());
 		order.setOrderNo(data.getOrdermf().getOrderNo()); 
 		
-		order_item.setCantitate(data.getCantitate());
-		order_item.setId(data.getId());
-		order_item.setOrdermf(order);
-		order_item.setPret(data.getPret());
-		order_item.setStockClientb2b(StockClientb2bDao.fromDTO(data.getStockClientb2b()));
-		entityManager.persist(order_item);  
+		orderItem.setCantitate(data.getCantitate());
+		orderItem.setId(data.getId());
+		orderItem.setOrdermf(order);
+		orderItem.setPret(data.getPret());
+		orderItem.setStockClientb2b(StockClientb2bDao.fromDTO(data.getStockClientb2b()));
+		entityManager.persist(orderItem);  
 		
-		entityManager.merge(order_item);
+		entityManager.merge(orderItem);
 		entityManager.flush(); 
 		
 	}
@@ -87,15 +87,15 @@ public class OrderItemDao implements OrderItemDAORemote {
 	}
 
 	@Override
-	public List<OrderItemDTO> getHistory(int id_user) {
+	public List<OrderItemDTO> getHistory(int idUser) {
 		Query query = entityManager.createQuery("SELECT c FROM OrderItem c WHERE c.ordermf.clientb2c.id = :id");
-		query.setParameter("id", id_user);
+		query.setParameter("id", idUser);
 		return toDTOList(query.getResultList()); 
 	}
  
-	private List<OrderItemDTO> toDTOList(List<?> obj_list){
+	private List<OrderItemDTO> toDTOList(List<?> objList){
 		List<OrderItemDTO> result = new ArrayList<>();
-		for(Object obj : obj_list) 
+		for(Object obj : objList) 
 			result.add(toDTO((OrderItem) obj));
 		
 		return result;

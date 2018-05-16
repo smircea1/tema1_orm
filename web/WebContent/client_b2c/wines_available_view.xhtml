@@ -18,31 +18,31 @@
 		</ui:define>
 		<ui:define name="page_content">
 			<h:dataTable value="#{wineDataViewsBean.getAvailableB2CWines()}"
-				var="stock_wine">
+				var="stockWine">
 
 				<h:column>
 					<f:facet name="header">Id</f:facet>    				
-				    	#{stock_wine.id}
+				    	#{stockWine.id}
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Wine Name</f:facet>    				
-				    	#{stock_wine.stockSupplier.wine.name}
+				    	#{stockWine.stockSupplier.wine.name}
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Seller Name</f:facet>    				
-				    	#{stock_wine.clientb2b.numeFirma}
+				    	#{stockWine.clientb2b.numeFirma}
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Pret</f:facet>
-	      				#{stock_wine.pret}
+	      				#{stockWine.pret}
 	   			</h:column>
 
 				<h:column>
 						<h:form label="winesActionsForm">
-							<h:commandButton value="BUY" action="#{navigationController.goToBuyWineB2c(stock_wine)}" /> 
+							<h:commandButton value="BUY" action="#{navigationController.goToBuyWineB2c(stockWine)}" /> 
 						</h:form> 
 				</h:column> 
 			</h:dataTable>

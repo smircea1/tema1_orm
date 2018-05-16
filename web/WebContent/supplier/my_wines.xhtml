@@ -23,26 +23,26 @@
 			<div id="wines_table">
 				<h:dataTable 
 					value="#{wineDataViewsBean.getSupplierWines()}" 
-					var="supplied_wine"
+					var="suppliedWine"
 				> 
 					<h:column>
 						<f:facet name="header">Id</f:facet>    				
-					    	#{supplied_wine.id} 
+					    	#{suppliedWine.id} 
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">Nume Vin</f:facet>
-	      					#{supplied_wine.wine.name}
+	      					#{suppliedWine.wine.name}
 	   				</h:column>
 	
 					<h:column>
 						<f:facet name="header">Cantitate</f:facet>    				
-					    	#{supplied_wine.cantitate}
+					    	#{suppliedWine.cantitate}
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">Pret</f:facet>
-	      					#{supplied_wine.pret}
+	      					#{suppliedWine.pret}
 	   				</h:column> 
 	   				<h:column>
 	   					<f:facet name="header">Actions</f:facet>
@@ -57,14 +57,14 @@
 				</h:dataTable>
 				
 				<h:form label="winesActionsForm">
-					<br/>Nume: 	<h:inputText id="numeField"  required="true" > </h:inputText> <!-- value="#{loginBean.loginDTO.username}" -->
+					<br/>Nume: 	<h:inputText id="numeField"  required="true" > </h:inputText> 
 					<br/>Soi: 	<h:inputText id="soiField"  required="true" >  </h:inputText>
 					<br/>An: 	<h:inputText id="yearField"  required="true" >  </h:inputText>
 					<br/>Type: 	<h:inputText id="typeField"  required="true" >  </h:inputText>
 					<br/>Cantitate: <h:inputText id="cantitateField"  required="true" > </h:inputText>
 					<br/>Pret: <h:inputText id="pretField"  required="true" >  </h:inputText>
 					
-					<br/><h:commandButton value="Add" /> <!-- action="addToSupplier()" adica add to logged user if is supplier  -->
+					<br/><h:commandButton value="Add" /> 
 				</h:form>
 				
 			</div> 

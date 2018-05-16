@@ -23,8 +23,7 @@ public class Supplier extends User implements Serializable {
 	private int vechime;
 
 	private int visibility;
-
-	//bi-directional many-to-one association to StockSupplier
+ 
 	@OneToMany(mappedBy="supplier")
 	private List<StockSupplier> stockSuppliers;
 

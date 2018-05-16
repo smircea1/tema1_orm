@@ -39,28 +39,28 @@ import com.example.ejb.dto.WineDTO;
 public class WineDataViewsBean implements Serializable {
 
 	@EJB
-	WineDAORemote dao_wine;
+	WineDAORemote daoWine;
 	
 	@EJB
-	StockSupplierDAORemote dao_supplier_wines;
+	StockSupplierDAORemote daoStockSupplier;
 	
 	@EJB
-	StockClientb2bDAORemote dao_clientb2b_wines;
+	StockClientb2bDAORemote daoStockClientb2b;
 
 	@EJB
-	OrderDAORemote dao_order;
+	OrderDAORemote daoOrder;
 
 	@EJB
-	OrderItemDAORemote dao_orderItem;
+	OrderItemDAORemote daoOrderItem;
 	
 	@EJB
-	SupplierDAORemote dao_supplier;
+	SupplierDAORemote daoSupplier;
 	
 	@EJB
-	Clientb2bDAORemote dao_clientb2b;
+	Clientb2bDAORemote daoClientb2b;
 	 
 	@EJB
-	Clientb2cDAORemote dao_clientb2c;
+	Clientb2cDAORemote daoClientb2c;
 	
 	
 	/**
@@ -76,76 +76,73 @@ public class WineDataViewsBean implements Serializable {
 	private SupplierDTO getSupplierLogged() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		UserDTO logged = (UserDTO)session.getAttribute("logged_user");
-		return logged == null? null : dao_supplier.getById(logged.getId()); 
+		UserDTO logged = (UserDTO)session.getAttribute("loggedUser");
+		return logged == null? null : daoSupplier.getById(logged.getId()); 
 	}
 	 
 	private Clientb2cDTO getClientb2cLogged() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		UserDTO logged = (UserDTO)session.getAttribute("logged_user"); 
-		return logged == null? null : dao_clientb2c.getById(logged.getId());  
+		UserDTO logged = (UserDTO)session.getAttribute("loggedUser"); 
+		return logged == null? null : daoClientb2c.getById(logged.getId());  
 	}
 	
 	private Clientb2bDTO getClientb2bLogged() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		UserDTO logged = (UserDTO)session.getAttribute("logged_user"); 
-		return logged == null? null : dao_clientb2b.getById(logged.getId());  
+		UserDTO logged = (UserDTO)session.getAttribute("loggedUser"); 
+		return logged == null? null : daoClientb2b.getById(logged.getId());  
 	}
 	 
 	public List<StockSupplierDTO> getSupplierWines(){
 		SupplierDTO supplier = getSupplierLogged();
-		return supplier == null? null : dao_supplier_wines.getBySupplierId(supplier.getId());
-	}
-	
-	// SUPPLIER
+		return supplier == null? null : daoStockSupplier.getBySupplierId(supplier.getId());
+	} 
 	
 	public void removeSuppliedWine(StockSupplierDTO data) { 
 		SupplierDTO supplier = getSupplierLogged();
 		if(data.getSupplier().getId() == supplier.getId())
-			dao_supplier_wines.delete(data);
+			daoStockSupplier.delete(data);
 	}
 	
 	public List<StockSupplierDTO> getB2BSuppliersWines(){
 		SupplierDTO supplier = getSupplierLogged();
-		return supplier == null? null : dao_supplier_wines.getBySupplierId(supplier.getId()); 
+		return supplier == null? null : daoStockSupplier.getBySupplierId(supplier.getId()); 
 	}
-	
-	//B2B
+	 
 	public List<StockSupplierDTO> getAllSuppliersWines(){
-		return dao_supplier_wines.getAllSuppliedWines();
+		return daoStockSupplier.getAllSuppliedWines();
 	}
 	
-	public void addClientStock(StockClientb2bDTO stock_wine) {
+	public void addClientStock(StockClientb2bDTO stockWine) {
 		Clientb2bDTO client = getClientb2bLogged(); 
 		if(client == null)
 			return;
 			
-		if(client.getId() == stock_wine.getClientb2b().getId())
-			dao_clientb2b_wines.insert(stock_wine); 
+		if(client.getId() == stockWine.getClientb2b().getId())
+			daoStockClientb2b.insert(stockWine); 
 	}
-	public void updateClientStock(StockClientb2bDTO stock_wine) {
+	public void updateClientStock(StockClientb2bDTO stockWine) {
 		Clientb2bDTO client = getClientb2bLogged(); 
-		if(client == null || client.getId() != stock_wine.getClientb2b().getId())
+		if(client == null || client.getId() != stockWine.getClientb2b().getId())
 			return;
 		
-		dao_clientb2b_wines.update(stock_wine);
+		daoStockClientb2b.update(stockWine);
 	}
 	
 	public List<StockClientb2bDTO> getB2BWines(){ 
 		Clientb2bDTO client = getClientb2bLogged();
-		return client == null? null : dao_clientb2b_wines.getByClientId(client.getId());  
+		return client == null? null : daoStockClientb2b.getByClientId(client.getId());  
 	}
 	
 	
-	public void removeB2bWine(StockClientb2bDTO stock_wine) { 
+	public void removeB2bWine(StockClientb2bDTO stockWine) { 
 		Clientb2bDTO client = getClientb2bLogged();
 		if(client == null)
 			return;
 		
-		dao_clientb2b_wines.delete(stock_wine); 
-		//refresh
+		daoStockClientb2b.delete(stockWine); 
+
 		final FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext ec = context.getExternalContext();
 		try {
@@ -154,10 +151,9 @@ public class WineDataViewsBean implements Serializable {
 			e.printStackTrace();
 		} 
 	} 
-
-	// b2c
+ 
 	public List<StockClientb2bDTO> getAvailableB2CWines(){
-		return dao_clientb2b_wines.getAllAvailableWines();
+		return daoStockClientb2b.getAllAvailableWines();
 	}  
 	
 	public String addOrder(OrderItemDTO orderItem) {
@@ -167,33 +163,28 @@ public class WineDataViewsBean implements Serializable {
 			context.addMessage("loginForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "stock request too big.", null ));
 			return "failed";
 		}
-		Clientb2cDTO b2c_logged =  getClientb2cLogged();
-		if(b2c_logged == null) {
+		Clientb2cDTO b2cLogged =  getClientb2cLogged();
+		if(b2cLogged == null) {
 			context.addMessage("loginForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "not logged..", null ));
 			return "failed";
 		}
 		
 		orderItem.setPret(orderItem.getCantitate() * orderItem.getStockClientb2b().getPret()); 
 
-		int timestamp = 12324113; // hardcoded as f
+		int timestamp = (int) System.currentTimeMillis(); 
 		
 		OrderDTO order = new OrderDTO();
 		order.setDate(timestamp);  
-		order.setClientb2c(b2c_logged);
+		order.setClientb2c(b2cLogged);
 		order.setOrderNo(UUID.randomUUID().toString());
 		
 		order.addItemOrderItem(orderItem); 
 		 
-		dao_order.insert(order);
-//		order = dao_order.getByOrderNumber(order.getOrderNo());
-//		for(OrderItemDTO order_itemDTO : order.getItems()) {
-//			order_itemDTO.setOrdermf(order);
-//			dao_orderItem.insert(order_itemDTO);
-//		}
+		daoOrder.insert(order);  
 		
 		StockClientb2bDTO stock = orderItem.getStockClientb2b(); 
 		stock.setCantitate(stock.getCantitate() - orderItem.getCantitate());
-		dao_clientb2b_wines.update(stock);
+		daoStockClientb2b.update(stock);
 		
 		return "success";
 	}
@@ -201,33 +192,33 @@ public class WineDataViewsBean implements Serializable {
 	public String placeOrder(List<OrderItemDTO> orderItems) {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		
-		Clientb2cDTO b2c_logged =  getClientb2cLogged();
-		if(b2c_logged == null) {
+		Clientb2cDTO b2cLogged =  getClientb2cLogged();
+		if(b2cLogged == null) {
 			context.addMessage("loginForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "not logged..", null ));
 			return "failed";
 		}
 		
 		OrderDTO order = new OrderDTO();
 		
-		int timestamp = 12324113; // hardcoded as f
+		int timestamp = (int) System.currentTimeMillis();  
 		order.setDate(timestamp);  
-		order.setClientb2c(b2c_logged);
+		order.setClientb2c(b2cLogged);
 		order.setOrderNo(UUID.randomUUID().toString());
 		
 		for(OrderItemDTO oid : orderItems) 
 			order.addItemOrderItem(oid);
 		 
-		dao_order.insert(order);
+		daoOrder.insert(order);
 		for(OrderItemDTO oid : orderItems) {
 			StockClientb2bDTO stock = oid.getStockClientb2b(); 
 			stock.setCantitate(stock.getCantitate() - oid.getCantitate());
-			dao_clientb2b_wines.update(stock);
+			daoStockClientb2b.update(stock);
 		}
 		 
 		return "success";
 	}
 	
-	public List<OrderItemDTO> getHistory(int id_user){ 
-		return dao_orderItem.getHistory(id_user); 
+	public List<OrderItemDTO> getHistory(int idUser){ 
+		return daoOrderItem.getHistory(idUser); 
 	}
 }

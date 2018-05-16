@@ -36,11 +36,7 @@ public class OrderDao implements OrderDAORemote {
 		dto.setClientb2c(Clientb2cDao.toDTO(data.getClientb2c()));
 		
 		return dto;
-	}
-//	
-//	public static Ordermf fromDTO(OrderDTO data) {
-//		
-//	}
+	} 
 	
 	@Override
 	public void insert(OrderDTO data) { 

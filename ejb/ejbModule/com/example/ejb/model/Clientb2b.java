@@ -26,8 +26,7 @@ public class Clientb2b extends User implements Serializable {
 	private int subscribed;
 
 	private int visibility;
-
-	//bi-directional many-to-one association to StockClientb2b
+ 
 	@OneToMany(mappedBy="clientb2b")
 	private List<StockClientb2b> stockClientb2bs;
 

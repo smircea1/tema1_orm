@@ -38,12 +38,7 @@ public class WineDao implements WineDAORemote{
 		wine.setName(data.getName());
 		wine.setSoi(data.getSoi());
 		wine.setYear(data.getYear());
-
-
-//		for(StockSupplier suppl : data.getStockSuppliers()) {
-//			wine.addStockSupplier(StockSupplierDao.toDTO(suppl));
-//		}
-		
+ 
 		return wine;
 	}
 	public static Wine fromDTO(WineDTO data) {
@@ -55,14 +50,7 @@ public class WineDao implements WineDAORemote{
 		wine.setName(data.getName());
 		wine.setSoi(data.getSoi());
 		wine.setYear(data.getYear());
-		
-//		for(StockSupplierDTO suppl : data.getStockSuppliers()) {
-//			wine.addStockSupplier(StockSupplierDao.fromDTO(suppl));
-//		}
-		
-		
-//		wine.setStockSuppliers(data.getStockSuppliers());
-		
+		 
 		return wine;
 	}
 	
@@ -76,13 +64,7 @@ public class WineDao implements WineDAORemote{
 		Wine updated = entityManager.find(Wine.class, data.getId());
 		if(updated == null)
 			return;
-//		updated.setDescription(data.getDescription());
-//		updated.setName(data.getName());
-//		updated.setTip(data.getTip());
-//		updated.setYear(data.getYear());
-//		updated.setSoi(data.getSoi());
 
-//		updated.setStockSuppliers(data.getStockSuppliers()); 
 		entityManager.merge(fromDTO(data));
 		entityManager.flush(); 
 	}
@@ -97,13 +79,13 @@ public class WineDao implements WineDAORemote{
 	public WineDTO getById(int id) {
 		Query query = entityManager.createQuery("SELECT c FROM Wine c WHERE c.id = :id");
 		query.setParameter("id", id); 
-		List<WineDTO> query_result = toDTOList(query.getResultList()); 
-		return query_result.size() == 0? null : query_result.get(0);
+		List<WineDTO> queryResult = toDTOList(query.getResultList()); 
+		return queryResult.size() == 0? null : queryResult.get(0);
 	} 
 	
-	private List<WineDTO> toDTOList(List<?> obj_list){
+	private List<WineDTO> toDTOList(List<?> objList){
 		List<WineDTO> result = new ArrayList<>();
-		for(Object obj : obj_list) {
+		for(Object obj : objList) {
 			result.add( toDTO((Wine) obj));
 		}
 		return result;

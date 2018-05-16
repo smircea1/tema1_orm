@@ -27,8 +27,7 @@ public class Clientb2c extends User implements Serializable {
 
 	@Lob
 	private String prenume;
-
-	//bi-directional many-to-one association to Ordermf
+ 
 	@OneToMany(mappedBy="clientb2c")
 	private List<Ordermf> ordermfs;
 

@@ -9,27 +9,23 @@
 	<link type="text/css" rel="stylesheet" href="../default_page.css" />
 	<!-- <title>Insert title here</title> -->
 </h:head>
-<h:body>
-	<!-- <h:outputStylesheet library="css" name="../default_page.css"  /> -->
-	<!-- HEADER --> 
+<h:body> 
 	<div id="header">
 		<div id="div_page_title" align="center">
 			<ui:insert name="pageTitle"/>
 		</div>
 		<div id="div_profile">
 			<br/><h:form label="profileActionsForm"> 
-				<br/>Hello, <h:commandLink value="#{logged_user.username}" action="#{defaultPageBean.goToProfile}" /> [<span id="user_type_text">#{logged_user.type}</span>]
+				<br/>Hello, <h:commandLink value="#{loggedUser.username}" action="#{defaultPageBean.goToProfile}" /> [<span id="user_type_text">#{loggedUser.type}</span>]
 				<br/><h:commandButton value="Logout" action="#{defaultPageBean.logout}" />
 			</h:form> 
 		</div>
 	</div>
-	
-	<!-- NAV -->
+	 
 	<div id="div_nav">
 		<ui:insert name="nav"/>
 	</div>
-	
-	<!-- CONTENT -->
+	 
 	<div id="div_page_content" align="center">
 		<ui:insert name="page_content"/>
 	</div>

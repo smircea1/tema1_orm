@@ -22,12 +22,10 @@ public class Ordermf implements Serializable {
 
 	@Lob
 	private String orderNo;
-
-	//bi-directional many-to-one association to OrderItem
+ 
 	@OneToMany(mappedBy="ordermf", cascade=CascadeType.PERSIST)
 	private List<OrderItem> orderItems;
-
-	//bi-directional many-to-one association to Clientb2c
+ 
 	@ManyToOne
 	@JoinColumn(name="id_user")
 	private Clientb2c clientb2c;

@@ -1,7 +1,5 @@
 package com.example.ejb.daoRemote;
 
-import java.util.List;
-
 import javax.ejb.Remote;
  
 import com.example.ejb.dto.WineDTO;

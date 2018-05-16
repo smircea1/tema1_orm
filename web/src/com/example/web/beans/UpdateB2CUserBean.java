@@ -35,10 +35,10 @@ public class UpdateB2CUserBean implements Serializable {
 	public Clientb2cDTO temporaryUser = null;
 
 	@EJB
-	private Clientb2cDAORemote client_dao;
+	private Clientb2cDAORemote daoClient;
 
 	public UpdateB2CUserBean() { 
-//		fetchTemporaryUser();
+
 	}
 
 	@PostConstruct
@@ -49,11 +49,11 @@ public class UpdateB2CUserBean implements Serializable {
 	private void fetchTemporaryUser() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		UserDTO logged = (UserDTO) session.getAttribute("logged_user");
+		UserDTO logged = (UserDTO) session.getAttribute("loggedUser");
 		if(logged == null)
 			return;
 		 
-		temporaryUser = client_dao.getById(logged.getId());
+		temporaryUser = daoClient.getById(logged.getId());
 	}
 
 	public Clientb2cDTO getTemporaryUser() {
@@ -63,31 +63,9 @@ public class UpdateB2CUserBean implements Serializable {
 	public String actionUpdate() {
 		if(temporaryUser == null)
 			return "Failure";
-		
-//		final FacesContext context = FacesContext.getCurrentInstance();
-		client_dao.update(temporaryUser);
-//		try {
-//			switch (temporaryUser.getType()) {
-//			case "Clientb2b": {
-//				context.getExternalContext().redirect("client_b2b/home_client_b2b.xhtml");
-//			}
-//				break;
-//			case "Clientb2c": {
-//				context.getExternalContext().redirect("client_b2c/home_client_b2c.xhtml");
-//			}
-//				break;
-//			case "Supplier": {
-//				context.getExternalContext().redirect("supplier/home_supplier.xhtml");
-//			}
-//				break;
-//			default: {
-//				// IGNORE
-//			}
-//			}
-//		} catch (LoginException | IOException e1) {
-//			context.addMessage("loginForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, e1.getMessage(), null));
-//			return "failed";
-//		}
+		 
+		daoClient.update(temporaryUser);
+
 		return "success.";
 	}
 }

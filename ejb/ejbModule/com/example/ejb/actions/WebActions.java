@@ -27,7 +27,7 @@ public class WebActions implements WebActionsRemote {
 	}
 
 	public UserDTO login(LoginDTO loginAction) throws LoginException {
-		UserDTO user_dto_result = null;
+		UserDTO dtoResult = null;
 
 		Query query = entityManager
 				.createQuery("SELECT c FROM User c WHERE c.username = :username AND c.password = :password");
@@ -36,20 +36,20 @@ public class WebActions implements WebActionsRemote {
 		List<?> result = query.getResultList();
 
 		if (result.size() != 0) {
-			User user_result = (User) result.get(0); 
+			User userResult = (User) result.get(0); 
 			
-			user_dto_result = new UserDTO();
+			dtoResult = new UserDTO();
 			
-			user_dto_result.setAddress(user_result.getAddress());
-			user_dto_result.setEmail(user_result.getEmail());
-			user_dto_result.setId(user_result.getId());
-			user_dto_result.setPassword(user_result.getPassword());
-			user_dto_result.setUsername(user_result.getUsername()); 
-			user_dto_result.setType(user_result.getDtype()); 
+			dtoResult.setAddress(userResult.getAddress());
+			dtoResult.setEmail(userResult.getEmail());
+			dtoResult.setId(userResult.getId());
+			dtoResult.setPassword(userResult.getPassword());
+			dtoResult.setUsername(userResult.getUsername()); 
+			dtoResult.setType(userResult.getDtype()); 
 		} else
 			throw new LoginException("invalid creditals!");
 
-		return user_dto_result;
+		return dtoResult;
 	}
 
 	public boolean changePassword(ChangePasswordDTO changePass) throws ChangePasswordException {
@@ -62,9 +62,7 @@ public class WebActions implements WebActionsRemote {
 		test.setPassword(changePass.getOldPassword());
 		
 		try {
-			login(test); // blind test
-
-//			throw new ChangePasswordException("it's ok.");
+			login(test); 
 			Query query = entityManager.createQuery("UPDATE User SET password = :password WHERE username = :username");
 			query.setParameter("username", changePass.getUsername());
 			query.setParameter("password", changePass.getNewPassword());

@@ -33,10 +33,10 @@ public class NavigationController implements Serializable {
 
 
 	@EJB
-	Clientb2bDAORemote dao_clientb2b;
+	Clientb2bDAORemote daoClientb2b;
 	 
 	@EJB
-	Clientb2cDAORemote dao_clientb2c;
+	Clientb2cDAORemote daoClientb2c;
 	
 	@PostConstruct
 	public void init() {
@@ -46,15 +46,15 @@ public class NavigationController implements Serializable {
 	private Clientb2bDTO getClientb2bLogged() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		UserDTO logged = (UserDTO)session.getAttribute("logged_user"); 
-		return logged == null? null : dao_clientb2b.getById(logged.getId());  
+		UserDTO logged = (UserDTO)session.getAttribute("loggedUser"); 
+		return logged == null? null : daoClientb2b.getById(logged.getId());  
 	}
 	
 	private Clientb2cDTO getClientb2cLogged() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		UserDTO logged = (UserDTO)session.getAttribute("logged_user"); 
-		return logged == null? null : dao_clientb2c.getById(logged.getId());  
+		UserDTO logged = (UserDTO)session.getAttribute("loggedUser"); 
+		return logged == null? null : daoClientb2c.getById(logged.getId());  
 	}
 	
 	public String viewWine(WineDTO wine) {
@@ -84,14 +84,7 @@ public class NavigationController implements Serializable {
 		
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		session.setAttribute("pending_order_stock", ordered);
-		
-//		try {
-//			context.getExternalContext().redirect("./order_wine.xhtml");
-//		} catch (IOException e) { 
-//			e.printStackTrace();
-//			return "failure";
-//		}
+		session.setAttribute("pendingOrderStock", ordered); 
 		
 		return "order_wine.xhtml";
 	}

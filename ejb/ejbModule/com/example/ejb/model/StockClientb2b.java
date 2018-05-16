@@ -22,21 +22,17 @@ public class StockClientb2b implements Serializable {
 	private double cantitate;
 
 	private double pret;
-
-	//bi-directional many-to-one association to AutoRestock
+ 
 	@OneToMany(mappedBy="stockClientb2b")
 	private List<AutoRestock> autoRestocks;
-
-	//bi-directional many-to-one association to OrderItem
+ 
 	@OneToMany(mappedBy="stockClientb2b")
 	private List<OrderItem> orderItems;
-
-	//bi-directional many-to-one association to Clientb2b
+ 
 	@ManyToOne
 	@JoinColumn(name="id_clientb2b")
 	private Clientb2b clientb2b;
-
-	//bi-directional many-to-one association to StockSupplier
+ 
 	@ManyToOne
 	@JoinColumn(name="id_stock_supplier")
 	private StockSupplier stockSupplier;

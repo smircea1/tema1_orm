@@ -31,8 +31,7 @@ public class Wine implements Serializable {
 	private String tip;
 
 	private int year;
-
-	//bi-directional many-to-one association to StockSupplier
+ 
 	@OneToMany(mappedBy="wine")
 	private List<StockSupplier> stockSuppliers;
 

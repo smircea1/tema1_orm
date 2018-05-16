@@ -28,7 +28,7 @@ public class DefaultPageBean implements Serializable {
 	public String logout() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		session.setAttribute("logged_user", null);
+		session.setAttribute("loggedUser", null);
 		
 		return goLogin(); 
 	}
@@ -61,7 +61,7 @@ public class DefaultPageBean implements Serializable {
 			}
 				break;
 			default: {
-				// IGNORE
+
 			}
 			}
 		} catch (IOException e) {
@@ -74,7 +74,7 @@ public class DefaultPageBean implements Serializable {
 	public String goToProfile() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		UserDTO logged = (UserDTO) session.getAttribute("logged_user");
+		UserDTO logged = (UserDTO) session.getAttribute("loggedUser");
 		try {
 			if (logged == null) {
 				return goLogin();
@@ -92,8 +92,8 @@ public class DefaultPageBean implements Serializable {
 					context.getExternalContext().redirect("profile_edit.xhtml");
 				}
 					break;
-				default: {
-					// IGNORE
+				default: { 
+					
 				}
 				}
 			}

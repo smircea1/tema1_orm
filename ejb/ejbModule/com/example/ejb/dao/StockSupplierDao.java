@@ -25,30 +25,30 @@ public class StockSupplierDao implements StockSupplierDAORemote {
 
 	public static StockSupplierDTO toDTO(StockSupplier data) {
 		StockSupplierDTO suppl = new StockSupplierDTO(); 
-		SupplierDTO dto_supplier = new SupplierDTO(); // avoid stackoverflow
-		WineDTO dto_wine = new WineDTO(); // avoid stackoverflow
+		SupplierDTO dtoSupplier = new SupplierDTO(); 
+		WineDTO dtoWine = new WineDTO(); 
 		
-		dto_wine.setId(data.getWine().getId());
-		dto_wine.setName(data.getWine().getName());
-		dto_wine.setSoi(data.getWine().getSoi());
-		dto_wine.setYear(data.getWine().getYear());
-		dto_wine.setTip(data.getWine().getTip());
-		dto_wine.setDescription(data.getWine().getDescription());
+		dtoWine.setId(data.getWine().getId());
+		dtoWine.setName(data.getWine().getName());
+		dtoWine.setSoi(data.getWine().getSoi());
+		dtoWine.setYear(data.getWine().getYear());
+		dtoWine.setTip(data.getWine().getTip());
+		dtoWine.setDescription(data.getWine().getDescription());
 		
-		dto_supplier.setId(data.getSupplier().getId());
-		dto_supplier.setUsername(data.getSupplier().getUsername());
-		dto_supplier.setAddress(data.getSupplier().getAddress());
-		dto_supplier.setEmail(data.getSupplier().getEmail());
-		dto_supplier.setNumeFirma(data.getSupplier().getNumeFirma());
-		dto_supplier.setVechime(data.getSupplier().getVechime());
-		//bla bla.
+		dtoSupplier.setId(data.getSupplier().getId());
+		dtoSupplier.setUsername(data.getSupplier().getUsername());
+		dtoSupplier.setAddress(data.getSupplier().getAddress());
+		dtoSupplier.setEmail(data.getSupplier().getEmail());
+		dtoSupplier.setNumeFirma(data.getSupplier().getNumeFirma());
+		dtoSupplier.setVechime(data.getSupplier().getVechime());
+
 		
 		suppl.setCantitate(data.getCantitate());
 		suppl.setPret(data.getPret());
-		suppl.setSupplier(dto_supplier);
-//		suppl.setSupplier(SupplierDAO.toDTO(data.getSupplier()));
-		suppl.setWine(dto_wine);
-//		suppl.setWine(WineDao.toDTO(data.getWine()));
+		suppl.setSupplier(dtoSupplier);
+
+		suppl.setWine(dtoWine);
+
 		suppl.setId(data.getId());
 		
 		for(StockClientb2b stock : data.getStockClientb2bs()) {
@@ -85,18 +85,6 @@ public class StockSupplierDao implements StockSupplierDAORemote {
 		if(stockSupplier == null)
 			return;
 		
-//		stockSupplier.setCantitate(data.getCantitate());
-//		stockSupplier.setPret(data.getPret());
-//		stockSupplier.setWine(WineDao.fromDTO(data.getWine()));
-//		stockSupplier.setSupplier(SupplierDAO.fromDTO(data.getSupplier()));
-//		
-//		List<StockClientb2b> stockClientb2bs = new ArrayList<>();
-//		
-//		for(StockClientb2bDTO client : data.getStockClientb2bs()) 
-//			stockClientb2bs.add(StockClientb2bDao.fromDTO(client));
-//		 
-//		stockSupplier.setStockClientb2bs(stockClientb2bs);
-
 		entityManager.merge(fromDTO(data));
 		entityManager.flush(); 
 	}
@@ -128,9 +116,9 @@ public class StockSupplierDao implements StockSupplierDAORemote {
 	} 
 	
 	
-	private List<StockSupplierDTO> toDTOList(List<?> obj_list){ 
+	private List<StockSupplierDTO> toDTOList(List<?> objList){ 
 		List<StockSupplierDTO> results = new ArrayList<>();
-		for(Object obj : obj_list)
+		for(Object obj : objList)
 			results.add(toDTO((StockSupplier)obj));
 		
 		return results;

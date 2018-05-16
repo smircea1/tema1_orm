@@ -22,37 +22,37 @@
 		<ui:define name="page_content">
 			<h:dataTable 
 					value="#{wineDataViewsBean.getAllSuppliersWines()}" 
-					var="supplied_wine"
+					var="suppliedWine"
 				>
 	
 					<h:column>
 						<f:facet name="header">Id</f:facet>    				
-					    	#{supplied_wine.id}
+					    	#{suppliedWine.id}
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">Wine Name</f:facet>    				
-					    	#{supplied_wine.wine.name}
+					    	#{suppliedWine.wine.name}
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">Supplier Name</f:facet>
-	      					#{supplied_wine.supplier.numeFirma}
+	      					#{suppliedWine.supplier.numeFirma}
 	   				</h:column>
 	   				
 	   				<h:column>
 						<f:facet name="header">Cantitate</f:facet>
-	      					#{supplied_wine.cantitate}
+	      					#{suppliedWine.cantitate}
 	   				</h:column>
 	   				
 	   				<h:column>
 						<f:facet name="header">Pret</f:facet>
-	      					#{supplied_wine.pret}
+	      					#{suppliedWine.pret}
 	   				</h:column> 
 	   				<h:column> 
 						<h:form label="winesActionsForm">
-							<h:commandButton value="View" action="#{navigationController.viewSuppliedWine(supplied_wine)}" />
-							<h:commandButton value="Add my wines" action="#{navigationController.addSuppliedWineToB2b(supplied_wine)}" />
+							<h:commandButton value="View" action="#{navigationController.viewSuppliedWine(suppliedWine)}" />
+							<h:commandButton value="Add my wines" action="#{navigationController.addSuppliedWineToB2b(suppliedWine)}" />
 						</h:form>
 	   				</h:column> 
 				</h:dataTable> 

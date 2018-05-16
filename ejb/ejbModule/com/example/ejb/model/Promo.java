@@ -24,8 +24,7 @@ public class Promo implements Serializable {
 	private int dateStart;
 
 	private double discount;
-
-	//bi-directional many-to-one association to StockSupplier
+ 
 	@ManyToOne
 	@JoinColumn(name="stock_supplier_id")
 	private StockSupplier stockSupplier;

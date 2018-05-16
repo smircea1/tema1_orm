@@ -11,9 +11,7 @@ public class StockClientb2bDTO implements Serializable {
 
 	private double cantitate;
 
-	private double pret;
- 
-//	private List<AutoRestock> autoRestocks;
+	private double pret; 
  
 	private List<OrderItemDTO> orderItems;
  
@@ -48,29 +46,7 @@ public class StockClientb2bDTO implements Serializable {
 	public void setPret(double pret) {
 		this.pret = pret;
 	}
-
-//	public List<AutoRestock> getAutoRestocks() {
-//		return this.autoRestocks;
-//	}
-//
-//	public void setAutoRestocks(List<AutoRestock> autoRestocks) {
-//		this.autoRestocks = autoRestocks;
-//	}
-//
-//	public AutoRestock addAutoRestock(AutoRestock autoRestock) {
-//		getAutoRestocks().add(autoRestock);
-//		autoRestock.setStockClientb2b(this);
-//
-//		return autoRestock;
-//	}
-//
-//	public AutoRestock removeAutoRestock(AutoRestock autoRestock) {
-//		getAutoRestocks().remove(autoRestock);
-//		autoRestock.setStockClientb2b(null);
-//
-//		return autoRestock;
-//	}
-
+ 
 	public List<OrderItemDTO> getOrderItems() {
 		return this.orderItems;
 	}

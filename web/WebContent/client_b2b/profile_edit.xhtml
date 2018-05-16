@@ -17,7 +17,7 @@
 			<ui:include src="./nav_clientb2c.xhtml" />
 		</ui:define>  
 		<ui:define name="page_content">
-			<br/> Username : #{logged_user.username}
+			<br/> Username : #{loggedUser.username}
 			<h:selectBooleanCheckbox value="#{user.rememberMe}" /> Visibility
 			<ui:include src="../changepass.xhtml" />
 		</ui:define>

@@ -72,13 +72,7 @@ public class SupplierDao implements SupplierDAORemote{
 		Supplier client = entityManager.find(Supplier.class, data.getId());
 		if(client == null)
 			return;
-		
-//		client.setNumeFirma(data.getNumeFirma());
-//		client.setVechime(data.getVechime());
-//		client.setVisibility(data.getVisibility()); 
-//		client.setStockSuppliers(data.getStockSuppliers());
-		 
-		
+
 		entityManager.merge(fromDTO(data));
 		entityManager.flush();  
 		
@@ -87,8 +81,7 @@ public class SupplierDao implements SupplierDAORemote{
 	@Override
 	public void delete(SupplierDTO data) {
 		Supplier client = entityManager.find(Supplier.class, data.getId());  
-		entityManager.remove(client); 
-		
+		entityManager.remove(client);  
 	}
 
 	@Override

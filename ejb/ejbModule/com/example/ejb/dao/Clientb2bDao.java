@@ -40,10 +40,7 @@ public class Clientb2bDao implements Clientb2bDAORemote {
 		client.setSubscribed(data.getSubscribed());
 		client.setType(data.getType());
 		client.setVisibility(data.getVisibility()); 
-		
-
-//		List<StockClientb2b> stocks = new ArrayList<>();
-//		client.setStockClientb2bs(data.getStockClientb2bs());
+ 
 		return client;
 	}
 	public static Clientb2bDTO toDTO(Clientb2b data) {
@@ -61,9 +58,7 @@ public class Clientb2bDao implements Clientb2bDAORemote {
 		client.setSubscribed(data.getSubscribed());
 		client.setType(data.getType());
 		client.setVisibility(data.getVisibility()); 
-		 
-//		List<StockClientb2b> stocks = new ArrayList<>();
-//		client.setStockClientb2bs(data.getStockClientb2bs());
+
 		return client;
 	}
 	
@@ -79,9 +74,7 @@ public class Clientb2bDao implements Clientb2bDAORemote {
 		client.setCui(data.getCui());
 		client.setNumeFirma(data.getNumeFirma());
 		client.setSubscribed(data.getSubscribed());
-		client.setVisibility(data.getVisibility()); 
-//		List<StockClientb2b> stocks = new ArrayList<>();
-//		client.setStockClientb2bs(data.getStockClientb2bs());
+		client.setVisibility(data.getVisibility());  
 		
 		entityManager.merge(client);
 		entityManager.flush();  

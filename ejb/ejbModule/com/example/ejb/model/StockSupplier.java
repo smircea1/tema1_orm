@@ -22,20 +22,16 @@ public class StockSupplier implements Serializable {
 	private double cantitate;
 
 	private double pret;
-
-	//bi-directional many-to-one association to Promo
+ 
 	@OneToMany(mappedBy="stockSupplier")
 	private List<Promo> promos;
-
-	//bi-directional many-to-one association to StockClientb2b
+ 
 	@OneToMany(mappedBy="stockSupplier")
 	private List<StockClientb2b> stockClientb2bs;
-
-	//bi-directional many-to-one association to Supplier
+ 
 	@ManyToOne
 	private Supplier supplier;
-
-	//bi-directional many-to-one association to Wine
+ 
 	@ManyToOne
 	private Wine wine;
 

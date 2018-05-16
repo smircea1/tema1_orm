@@ -52,14 +52,13 @@ public class ChangePasswordBean implements Serializable {
 	public String actionChange() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		UserDTO logged = (UserDTO)session.getAttribute("logged_user");
+		UserDTO logged = (UserDTO)session.getAttribute("loggedUser");
 		
 		changeDTO.setUsername(logged.getUsername());
 		
 		try {
 			actions.changePassword(changeDTO);
 			context.addMessage("changeForm", new FacesMessage(FacesMessage.SEVERITY_INFO, "success", null )); 
-//			context.getExternalContext().redirect("login.xhtml");
 		}catch(ChangePasswordException e) {
 			context.addMessage("changeForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null )); 
 		}

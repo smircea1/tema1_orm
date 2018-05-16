@@ -18,21 +18,21 @@
 		</ui:define>
 		<ui:define name="page_content">
 			<h:dataTable value="#{wineDataViewsBean.getHistory(logged_user.id)}"
-				var="ordered_item">
+				var="orderedItem">
 
 				<h:column>
 					<f:facet name="header">Nume vin</f:facet>    				
-					    	#{ordered_item.stockClientb2b.stockSupplier.wine.name}
+					    	#{orderedItem.stockClientb2b.stockSupplier.wine.name}
 					</h:column>
 
 				<h:column>
 					<f:facet name="header">Cantitate</f:facet>    				
-				    	#{ordered_item.cantitate}
+				    	#{orderedItem.cantitate}
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Pret total</f:facet>    				
-				    	#{ordered_item.pret}
+				    	#{orderedItem.pret}
 				</h:column>
 
 			</h:dataTable>

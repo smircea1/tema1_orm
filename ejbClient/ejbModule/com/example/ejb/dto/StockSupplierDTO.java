@@ -13,8 +13,6 @@ public class StockSupplierDTO implements Serializable {
 	private double cantitate;
 
 	private double pret;
-
-//	private List<Promo> promos;
  
 	private List<StockClientb2bDTO> stockClientb2bs;
 
@@ -48,29 +46,7 @@ public class StockSupplierDTO implements Serializable {
 
 	public void setPret(double pret) {
 		this.pret = pret;
-	}
-
-//	public List<Promo> getPromos() {
-//		return this.promos;
-//	}
-//
-//	public void setPromos(List<Promo> promos) {
-//		this.promos = promos;
-//	}
-//
-//	public Promo addPromo(Promo promo) {
-//		getPromos().add(promo);
-//		promo.setStockSupplier(this);
-//
-//		return promo;
-//	}
-//
-//	public Promo removePromo(Promo promo) {
-//		getPromos().remove(promo);
-//		promo.setStockSupplier(null);
-//
-//		return promo;
-//	}
+	} 
 
 	public List<StockClientb2bDTO> getStockClientb2bs() {
 		return this.stockClientb2bs;

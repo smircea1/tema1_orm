@@ -34,13 +34,13 @@ public class B2cCartBean implements Serializable {
 
 
 	@EJB
-	Clientb2cDAORemote dao_clientb2c;
+	Clientb2cDAORemote daoClientb2c;
 	 
 	@EJB
-	StockClientb2bDAORemote dao_clientb2b_wines;
+	StockClientb2bDAORemote daoClientb2bWines;
 
 	@EJB
-	OrderDAORemote dao_order; 
+	OrderDAORemote daoOrder; 
 	
 
 	private List<OrderItemDTO> daCart;
@@ -69,13 +69,26 @@ public class B2cCartBean implements Serializable {
 	private Clientb2cDTO getClientb2cLogged() {
 		final FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		UserDTO logged = (UserDTO) session.getAttribute("logged_user");
-		return logged == null ? null : dao_clientb2c.getById(logged.getId());
+		UserDTO logged = (UserDTO) session.getAttribute("loggedUser");
+		return logged == null ? null : daoClientb2c.getById(logged.getId());
 	}
 
-	public void createOrderItem(double quantity, StockClientb2bDTO ordered) {
-		// todo, check if other other item is there, and sum the quantities,
-		//then compare
+	public void createOrderItem(double quantity, StockClientb2bDTO ordered) { 
+		OrderItemDTO alreadyExists = null;
+		for(OrderItemDTO test : daCart) {
+			if(test.getStockClientb2b().getId() == ordered.getId()) {
+				alreadyExists = test;
+				break;
+			} 
+		} 
+		
+		if(alreadyExists != null) {
+			double newQuantity = quantity + alreadyExists.getCantitate();
+			if(newQuantity > ordered.getCantitate())
+				alreadyExists.setCantitate(newQuantity);
+			return;
+		}
+		
 		if(quantity > ordered.getCantitate()) {
 			return;
 		}
@@ -98,22 +111,21 @@ public class B2cCartBean implements Serializable {
 
 		OrderDTO order = new OrderDTO();
 
-		int timestamp = 12324113; // hardcoded as f
+		int timestamp = (int)System.currentTimeMillis(); 
 		order.setDate(timestamp);
 		order.setClientb2c(b2c_logged);
 		order.setOrderNo(UUID.randomUUID().toString());
 
-		for (OrderItemDTO oid : daCart) {
-			//update stock
+		for (OrderItemDTO oid : daCart) { 
 			StockClientb2bDTO stock = oid.getStockClientb2b();
 			stock.setCantitate(stock.getCantitate() - oid.getCantitate());
-			dao_clientb2b_wines.update(stock);
+			daoClientb2bWines.update(stock);
 			
 			order.addItemOrderItem(oid);
 			oid.setOrdermf(order);
 			oid.setPret(stock.getPret());  
 		}
-		dao_order.insert(order);
+		daoOrder.insert(order);
 		
 		daCart.clear();
 		updateSessionCart();
