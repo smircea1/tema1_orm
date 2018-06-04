@@ -45,6 +45,16 @@
 	      					#{suppliedWine.pret}
 	   				</h:column> 
 	   				<h:column>
+						<f:facet name="header">Add Promo</f:facet>
+	      					<h:form label="winesPromoForm">
+	      						<h:inputText id="descriptionField" value="#{promoBean.description}" >
+	      						
+								</h:inputText>
+								<h:commandButton value="Publish" action="#{promoBean.insert(suppliedWine)}" />  
+							</h:form>
+	   				</h:column> 
+	   				
+	   				<h:column>
 	   					<f:facet name="header">Actions</f:facet>
 	   					<div id="wines_actions">
 							<h:form label="winesActionsForm">

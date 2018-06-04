@@ -89,7 +89,7 @@ public class Clientb2bDao implements Clientb2bDAORemote {
 
 	@Override
 	public Clientb2bDTO findByCui(String cui) {
-		Query query = entityManager.createQuery("SELECT c FROM Clientb2c c WHERE c.cui = :cui");
+		Query query = entityManager.createQuery("SELECT c FROM Clientb2b c WHERE c.cui = :cui");
 		query.setParameter("cui", cui);
 		List<?> result = query.getResultList();
 		
@@ -99,6 +99,21 @@ public class Clientb2bDao implements Clientb2bDAORemote {
 		
 		Clientb2b found = (Clientb2b)result.get(0);
 		return toDTO(found); 
+	}
+	
+	@Override
+	public List<Clientb2bDTO> getAllSubscribed() {
+		Query query = entityManager.createQuery("SELECT c FROM Clientb2b c WHERE c.subscribed = :subscribed");
+		query.setParameter("subscribed", 1);
+		List<?> result = query.getResultList();
+		List<Clientb2b> castedResult = (List<Clientb2b>) result;
+		
+		List<Clientb2bDTO> dtos = new ArrayList<>();
+		for(Clientb2b found : castedResult) {
+			dtos.add(toDTO(found));
+		} 
+		
+		return dtos; 
 	}
 
 	@Override

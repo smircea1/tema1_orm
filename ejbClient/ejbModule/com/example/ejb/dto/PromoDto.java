@@ -1,38 +1,34 @@
-package com.example.ejb.model;
+package com.example.ejb.dto;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne; 
 
-/**
- * The persistent class for the promo database table.
- * 
- */
-@Entity
-@NamedQuery(name="Promo.findAll", query="SELECT p FROM Promo p")
-public class Promo implements Serializable {
+public class PromoDto implements Serializable{
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+ 
 	private int id;
-
-	@Column(name="date_end")
+ 
 	private int dateEnd;
-
-	@Column(name="date_start")
+ 
 	private int dateStart;
-
-	@Column(name="description")
+ 
 	private String description;
 	
 	private double discount;
- 
-	@ManyToOne
-	@JoinColumn(name="stock_supplier_id")
-	private StockSupplier stockSupplier;
 
-	public Promo() {
+	private StockSupplierDTO stockSupplier;
+
+	public PromoDto() {
 	}
 
 	public int getId() {
@@ -75,12 +71,11 @@ public class Promo implements Serializable {
 		this.discount = discount;
 	}
 
-	public StockSupplier getStockSupplier() {
+	public StockSupplierDTO getStockSupplier() {
 		return this.stockSupplier;
 	}
 
-	public void setStockSupplier(StockSupplier stockSupplier) {
+	public void setStockSupplier(StockSupplierDTO stockSupplier) {
 		this.stockSupplier = stockSupplier;
 	}
-
 }
