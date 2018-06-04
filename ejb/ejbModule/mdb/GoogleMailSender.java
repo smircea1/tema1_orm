@@ -17,7 +17,14 @@ public class GoogleMailSender {
 	private String localMailAddress = "tmiss20172019@gmail.com";
 	private String password = "mateinfotmiss";
 
-	public GoogleMailSender() {
+	public GoogleMailSender() { 
+//		props.put("mail.smtp.host", "smtp.gmail.com");
+//		props.put("mail.smtp.socketFactory.port", "465");
+//		props.put("mail.smtp.socketFactory.class",
+//				"javax.net.ssl.SSLSocketFactory");
+//		props.put("mail.smtp.auth", "true");
+//		props.put("mail.smtp.port", "465");
+		
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");

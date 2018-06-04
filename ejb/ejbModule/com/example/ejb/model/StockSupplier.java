@@ -2,6 +2,8 @@ package com.example.ejb.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,6 +38,7 @@ public class StockSupplier implements Serializable {
 	private Wine wine;
 
 	public StockSupplier() {
+		stockClientb2bs = new ArrayList<>();
 	}
 
 	public int getId() {

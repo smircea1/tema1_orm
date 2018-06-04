@@ -1,5 +1,6 @@
 package com.example.ejb.dao;
 
+
 import javax.ejb.Stateless;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -12,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+ 
 
 import com.example.ejb.daoRemote.PromoDaoRemote;
 import com.example.ejb.dto.PromoDto;
@@ -30,7 +32,7 @@ public class PromoDao implements PromoDaoRemote {
 		promo.setStockSupplier(StockSupplierDao.fromDTO(data.getStockSupplier()));
 		
 		return promo;
-	}
+	}  
 	
 	@Override
 	public void insert(PromoDto data) {

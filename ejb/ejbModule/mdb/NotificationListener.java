@@ -8,11 +8,9 @@ import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
-
-import com.example.ejb.dao.Clientb2bDao;
+ 
 import com.example.ejb.daoRemote.Clientb2bDAORemote;
-import com.example.ejb.dto.Clientb2bDTO;
-import com.example.ejb.model.Clientb2b;
+import com.example.ejb.dto.Clientb2bDTO; 
 
 /**
  * Message-Driven Bean implementation class for: NotificationMDB
