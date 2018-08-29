@@ -119,7 +119,7 @@ public class B2cCartBean implements Serializable {
 		for (OrderItemDTO oid : daCart) { 
 			StockClientb2bDTO stock = oid.getStockClientb2b();
 			stock.setCantitate(stock.getCantitate() - oid.getCantitate());
-			daoClientb2bWines.update(stock);
+			daoClientb2bWines.update(stock); 
 			
 			order.addItemOrderItem(oid);
 			oid.setOrdermf(order);
@@ -129,6 +129,8 @@ public class B2cCartBean implements Serializable {
 		
 		daCart.clear();
 		updateSessionCart();
+		
+		
 
 		return "success";
 	}
