@@ -42,7 +42,7 @@ public class NotificationListener implements MessageListener{
     		final List<Clientb2bDTO> subscribedClients = daoClientb2b.getAllSubscribed();
     		
     		for(Clientb2bDTO current : subscribedClients) 
-        		mailSender.SendMessage(current.getEmail(), description);
+        		mailSender.sendMessage(current.getEmail(), description);
 		} catch (final JMSException e) {
 			e.printStackTrace();
 		}

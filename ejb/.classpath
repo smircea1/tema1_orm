@@ -18,5 +18,9 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/Programming_ZONE/tema_orm/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="D:/Programming_ZONE/tema_orm/slf4j-1.7.25/slf4j-1.7.25/integration/lib/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="D:/Programming_ZONE/tema_orm/slf4j-1.7.25/slf4j-1.7.25/integration/lib/slf4j-api-2.0.99.jar"/>
+	<classpathentry kind="lib" path="D:/Programming_ZONE/tema_orm/slf4j-1.7.25/slf4j-1.7.25/integration/lib/slf4j-simple-1.6.99.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

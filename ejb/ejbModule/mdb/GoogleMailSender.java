@@ -31,7 +31,7 @@ public class GoogleMailSender {
 		props.put("mail.smtp.port", "587"); 
 	}
 	
-	public void SendMessage(String destination, String stringMessage) {
+	public void sendMessage(String destination, String stringMessage) {
 		Session session = Session.getInstance(props,
 				  new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
